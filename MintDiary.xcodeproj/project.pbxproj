@@ -1,0 +1,471 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A90357D5295AD1F6008554A8 /* DiaryCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90357D4295AD1F6008554A8 /* DiaryCardView.swift */; };
+		A95702BC2957303700519766 /* DiaryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95702BB2957303700519766 /* DiaryListView.swift */; };
+		A976F3B92956895F00309E92 /* ReadSizeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A976F3B82956895F00309E92 /* ReadSizeHelper.swift */; };
+		A976F3BB2956931900309E92 /* SleepModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A976F3BA2956931900309E92 /* SleepModel.swift */; };
+		A9840535294D3F4F00002426 /* MintDiaryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9840534294D3F4F00002426 /* MintDiaryApp.swift */; };
+		A9840537294D3F4F00002426 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9840536294D3F4F00002426 /* ContentView.swift */; };
+		A9840539294D3F5000002426 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9840538294D3F5000002426 /* Assets.xcassets */; };
+		A984053C294D3F5000002426 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A984053B294D3F5000002426 /* Preview Assets.xcassets */; };
+		A9840545294D438900002426 /* TextCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9840544294D438900002426 /* TextCard.swift */; };
+		A9840549294D4A9D00002426 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9840548294D4A9D00002426 /* Constant.swift */; };
+		A989F70D295738CD00BAA6E8 /* DiaryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A989F70C295738CD00BAA6E8 /* DiaryDetailView.swift */; };
+		A9B866CD295BF0ED0004B237 /* CardStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B866CC295BF0ED0004B237 /* CardStyle.swift */; };
+		A9BB46132956CE5500A7E474 /* FileHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BB46122956CE5500A7E474 /* FileHelper.swift */; };
+		A9BB46152956CE8400A7E474 /* DiaryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BB46142956CE8400A7E474 /* DiaryData.swift */; };
+		A9BB46172956D3D100A7E474 /* CardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BB46162956D3D100A7E474 /* CardModel.swift */; };
+		A9CE12AD2951446C00737FCC /* TextModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CE12AC2951446C00737FCC /* TextModel.swift */; };
+		A9D5B40B294E01FB007AD6BC /* SleepCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D5B40A294E01FB007AD6BC /* SleepCard.swift */; };
+		A9E311A9295BD20600D59C49 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E311A8295BD20600D59C49 /* StartView.swift */; };
+		A9EABF9F295EC2EA0010F620 /* TextStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EABF9E295EC2EA0010F620 /* TextStyle.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		A90357D4295AD1F6008554A8 /* DiaryCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryCardView.swift; sourceTree = "<group>"; };
+		A95702BB2957303700519766 /* DiaryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryListView.swift; sourceTree = "<group>"; };
+		A976F3B82956895F00309E92 /* ReadSizeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadSizeHelper.swift; sourceTree = "<group>"; };
+		A976F3BA2956931900309E92 /* SleepModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepModel.swift; sourceTree = "<group>"; };
+		A9840531294D3F4F00002426 /* MintDiary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MintDiary.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A9840534294D3F4F00002426 /* MintDiaryApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MintDiaryApp.swift; sourceTree = "<group>"; };
+		A9840536294D3F4F00002426 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		A9840538294D3F5000002426 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A984053B294D3F5000002426 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		A9840544294D438900002426 /* TextCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextCard.swift; sourceTree = "<group>"; };
+		A9840548294D4A9D00002426 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		A989F70C295738CD00BAA6E8 /* DiaryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryDetailView.swift; sourceTree = "<group>"; };
+		A9B866CC295BF0ED0004B237 /* CardStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardStyle.swift; sourceTree = "<group>"; };
+		A9BB46122956CE5500A7E474 /* FileHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileHelper.swift; sourceTree = "<group>"; };
+		A9BB46142956CE8400A7E474 /* DiaryData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryData.swift; sourceTree = "<group>"; };
+		A9BB46162956D3D100A7E474 /* CardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModel.swift; sourceTree = "<group>"; };
+		A9CE12AC2951446C00737FCC /* TextModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextModel.swift; sourceTree = "<group>"; };
+		A9D5B40A294E01FB007AD6BC /* SleepCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepCard.swift; sourceTree = "<group>"; };
+		A9E311A8295BD20600D59C49 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
+		A9EABF9E295EC2EA0010F620 /* TextStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextStyle.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A984052E294D3F4F00002426 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A9514F83296025FC00FECEB3 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				A90357D4295AD1F6008554A8 /* DiaryCardView.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		A976F3B62956893C00309E92 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				A976F3B82956895F00309E92 /* ReadSizeHelper.swift */,
+				A9BB46122956CE5500A7E474 /* FileHelper.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		A9840528294D3F4F00002426 = {
+			isa = PBXGroup;
+			children = (
+				A9840533294D3F4F00002426 /* MintDiary */,
+				A9840532294D3F4F00002426 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A9840532294D3F4F00002426 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A9840531294D3F4F00002426 /* MintDiary.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A9840533294D3F4F00002426 /* MintDiary */ = {
+			isa = PBXGroup;
+			children = (
+				A9840534294D3F4F00002426 /* MintDiaryApp.swift */,
+				A9840548294D4A9D00002426 /* Constant.swift */,
+				A9EABF9D295EC2CF0010F620 /* Style */,
+				A976F3B62956893C00309E92 /* Helper */,
+				A9CE12AA2951445000737FCC /* Model */,
+				A9840542294D436B00002426 /* View */,
+				A9840538294D3F5000002426 /* Assets.xcassets */,
+				A984053A294D3F5000002426 /* Preview Content */,
+			);
+			path = MintDiary;
+			sourceTree = "<group>";
+		};
+		A984053A294D3F5000002426 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				A984053B294D3F5000002426 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		A9840542294D436B00002426 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A9514F83296025FC00FECEB3 /* Helper */,
+				A9840536294D3F4F00002426 /* ContentView.swift */,
+				A95702BB2957303700519766 /* DiaryListView.swift */,
+				A989F70C295738CD00BAA6E8 /* DiaryDetailView.swift */,
+				A9E311A8295BD20600D59C49 /* StartView.swift */,
+				A9840543294D437800002426 /* Card */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A9840543294D437800002426 /* Card */ = {
+			isa = PBXGroup;
+			children = (
+				A9840544294D438900002426 /* TextCard.swift */,
+				A9D5B40A294E01FB007AD6BC /* SleepCard.swift */,
+			);
+			path = Card;
+			sourceTree = "<group>";
+		};
+		A9CE12AA2951445000737FCC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A9BB46142956CE8400A7E474 /* DiaryData.swift */,
+				A9CE12AB2951445900737FCC /* Card */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A9CE12AB2951445900737FCC /* Card */ = {
+			isa = PBXGroup;
+			children = (
+				A9CE12AC2951446C00737FCC /* TextModel.swift */,
+				A976F3BA2956931900309E92 /* SleepModel.swift */,
+				A9BB46162956D3D100A7E474 /* CardModel.swift */,
+			);
+			path = Card;
+			sourceTree = "<group>";
+		};
+		A9EABF9D295EC2CF0010F620 /* Style */ = {
+			isa = PBXGroup;
+			children = (
+				A9B866CC295BF0ED0004B237 /* CardStyle.swift */,
+				A9EABF9E295EC2EA0010F620 /* TextStyle.swift */,
+			);
+			path = Style;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A9840530294D3F4F00002426 /* MintDiary */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A984053F294D3F5000002426 /* Build configuration list for PBXNativeTarget "MintDiary" */;
+			buildPhases = (
+				A984052D294D3F4F00002426 /* Sources */,
+				A984052E294D3F4F00002426 /* Frameworks */,
+				A984052F294D3F4F00002426 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MintDiary;
+			productName = MintDiary;
+			productReference = A9840531294D3F4F00002426 /* MintDiary.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A9840529294D3F4F00002426 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1410;
+				LastUpgradeCheck = 1410;
+				TargetAttributes = {
+					A9840530294D3F4F00002426 = {
+						CreatedOnToolsVersion = 14.1;
+					};
+				};
+			};
+			buildConfigurationList = A984052C294D3F4F00002426 /* Build configuration list for PBXProject "MintDiary" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = "zh-Hans";
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				"zh-Hans",
+			);
+			mainGroup = A9840528294D3F4F00002426;
+			productRefGroup = A9840532294D3F4F00002426 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A9840530294D3F4F00002426 /* MintDiary */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A984052F294D3F4F00002426 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A984053C294D3F5000002426 /* Preview Assets.xcassets in Resources */,
+				A9840539294D3F5000002426 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A984052D294D3F4F00002426 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A9CE12AD2951446C00737FCC /* TextModel.swift in Sources */,
+				A9BB46172956D3D100A7E474 /* CardModel.swift in Sources */,
+				A90357D5295AD1F6008554A8 /* DiaryCardView.swift in Sources */,
+				A9840545294D438900002426 /* TextCard.swift in Sources */,
+				A9EABF9F295EC2EA0010F620 /* TextStyle.swift in Sources */,
+				A9840549294D4A9D00002426 /* Constant.swift in Sources */,
+				A9B866CD295BF0ED0004B237 /* CardStyle.swift in Sources */,
+				A976F3B92956895F00309E92 /* ReadSizeHelper.swift in Sources */,
+				A9E311A9295BD20600D59C49 /* StartView.swift in Sources */,
+				A9840537294D3F4F00002426 /* ContentView.swift in Sources */,
+				A9BB46132956CE5500A7E474 /* FileHelper.swift in Sources */,
+				A976F3BB2956931900309E92 /* SleepModel.swift in Sources */,
+				A989F70D295738CD00BAA6E8 /* DiaryDetailView.swift in Sources */,
+				A9BB46152956CE8400A7E474 /* DiaryData.swift in Sources */,
+				A9D5B40B294E01FB007AD6BC /* SleepCard.swift in Sources */,
+				A95702BC2957303700519766 /* DiaryListView.swift in Sources */,
+				A9840535294D3F4F00002426 /* MintDiaryApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		A984053D294D3F5000002426 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		A984053E294D3F5000002426 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A9840540294D3F5000002426 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"MintDiary/Preview Content\"";
+				DEVELOPMENT_TEAM = 424Z47PA9V;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "薄荷日记";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = MintCode.MintDiary;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A9840541294D3F5000002426 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"MintDiary/Preview Content\"";
+				DEVELOPMENT_TEAM = 424Z47PA9V;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "薄荷日记";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = MintCode.MintDiary;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A984052C294D3F4F00002426 /* Build configuration list for PBXProject "MintDiary" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A984053D294D3F5000002426 /* Debug */,
+				A984053E294D3F5000002426 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A984053F294D3F5000002426 /* Build configuration list for PBXNativeTarget "MintDiary" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A9840540294D3F5000002426 /* Debug */,
+				A9840541294D3F5000002426 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A9840529294D3F4F00002426 /* Project object */;
+}
