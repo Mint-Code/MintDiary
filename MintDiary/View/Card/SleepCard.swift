@@ -88,8 +88,34 @@ struct SleepCard: View {
             Text("睡眠时长")
                 .headlineFont(level: model.level)
                 .padding(.horizontal)
+                .padding(.horizontal)
             if isEditing {
                 // MARK: -
+#if os(iOS)
+                HStack {
+                    ViewThatFits {
+                        Text("\(model.sleep)小时")
+                            .font(.body)
+                            .lineLimit(1)
+                            .foregroundColor(.textColor(model.level))
+                        Text("\(model.sleep)")
+                            .font(.body)
+                            .lineLimit(1)
+                            .foregroundColor(.textColor(model.level))
+                    }
+                    Stepper("") {
+                        if model.sleep < 12 {
+                            model.sleep += 1
+                        }
+                    } onDecrement: {
+                        if model.sleep > 0 {
+                            model.sleep -= 1
+                        }
+                    }
+                    .labelsHidden()
+                }
+                .padding(.horizontal)
+#else
                 Stepper {
                     Text("\(model.sleep)小时")
                         .font(.body)
@@ -99,6 +125,9 @@ struct SleepCard: View {
                 } onDecrement: {
                     model.sleep -= 1
                 }
+                .padding(.horizontal)
+                .padding(.horizontal)
+#endif
             } else {
                 ViewThatFits {
                     // MARK: -
@@ -124,7 +153,7 @@ struct SleepCard: View {
                 .padding(.horizontal)
             }
         }
-        .cardEffect(model.level, model.column, colorScheme: colorScheme)
+        .cardStyle(model.level, model.column, colorScheme: colorScheme)
     }
 }
 
@@ -144,18 +173,18 @@ struct SleepCard_Previews: PreviewProvider {
     }
     
     static var previews: some View {
-        Grid(alignment: .topLeading) {
+        Grid(alignment: .topLeading, horizontalSpacing: .cardGridSpacing, verticalSpacing: .cardGridSpacing) {
             GridRow {
                 SleepCardContainer(2, level: 0)
                     .frame(width: 250)
                 SleepCardContainer(4, level: 0)
-                    .frame(width: 150)
+                    .frame(width: 120)
             }
             GridRow {
                 SleepCardContainer(6, level: 1)
                     .frame(width: 250)
                 SleepCardContainer(7, level: 2)
-                    .frame(width: 150)
+                    .frame(width: 120)
             }
             GridRow {
                 SleepCardContainer(8, level: 3)

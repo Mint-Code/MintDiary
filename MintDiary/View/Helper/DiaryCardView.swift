@@ -16,20 +16,20 @@ struct DiaryCardView: View {
         case .text(let model):
             // MARK: -
             TextCard(
-                Binding<TextModel>(get: {
+                Binding {
                     model
-                }, set: { newValue in
+                } set: { newValue in
                     diaryCardData.card = .text(newValue)
-                }), isEditing
+                }, isEditing
             )
         case .sleep(let model):
             // MARK: -
             SleepCard(
-                Binding<SleepModel>(get: {
+                Binding {
                     model
-                }, set: { newValue in
+                } set: { newValue in
                     diaryCardData.card = .sleep(newValue)
-                }), isEditing
+                }, isEditing
             )
         }
     }

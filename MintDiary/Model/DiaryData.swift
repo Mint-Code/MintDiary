@@ -77,8 +77,8 @@ enum DiaryCard: Equatable, CaseIterable, Codable {
     
     static var allCases: [DiaryCard] {
         [
-            .text(TextModel("新建文本", "这是一段文本。\n这是一段文本。", level: 5)),
-            .sleep(SleepModel(8, level: 1))
+            .text(CardDocument.text),
+            .sleep(CardDocument.sleep)
         ]
     }
 }
@@ -103,4 +103,21 @@ struct DiaryCardData: Identifiable, Equatable, Hashable, Codable {
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
     }
+}
+
+// MARK: - DiaryDocument
+struct DiaryDocument {
+    static var empty = Diary("新建空白日记", [], icon: "book", column: 2)
+    static var text = Diary(
+        "新建文本日记",
+        [DiaryCardData(.text(TextModel("段落", "这是一段文字。\n这是一段文字。", level: 0)))],
+        icon: "doc",
+        column: 1
+    )
+}
+
+// MARK: - CardDocument
+struct CardDocument {
+    static var text = TextModel("段落", "这是一段文字。\n这是一段文字。", level: 0)
+    static var sleep = SleepModel(8, level: 0)
 }

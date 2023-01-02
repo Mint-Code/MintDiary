@@ -2,7 +2,7 @@ import SwiftUI
 
 // MARK: - 卡片风格
 extension View {
-    func cardEffect(_ level: Int, _ column: Int, colorScheme: ColorScheme) -> some View {
+    func cardStyle(_ level: Int, _ column: Int, colorScheme: ColorScheme) -> some View {
         self
             .gridCellColumns(column)
             .padding(.vertical)

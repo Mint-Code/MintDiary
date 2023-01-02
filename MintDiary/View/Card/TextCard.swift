@@ -75,6 +75,7 @@ struct TextCard: View {
                     Text(model.text)
                         .bodyFont(.center, .center, level: model.level)
                         .padding(.horizontal)
+                        .padding(.horizontal)
                 } else {
                     // MARK: -
                     HStack {
@@ -93,7 +94,7 @@ struct TextCard: View {
                 }
             }
         }
-        .cardEffect(model.level, model.column, colorScheme: colorScheme)
+        .cardStyle(model.level, model.column, colorScheme: colorScheme)
     }
 }
 
@@ -121,12 +122,12 @@ struct TextCard_Previews: PreviewProvider {
         }
         
         var body: some View {
-            TextCard($model, true)
+            TextCard($model, false)
         }
     }
     
     static var previews: some View {
-        Grid(alignment: .topLeading) {
+        Grid(alignment: .topLeading, horizontalSpacing: .cardGridSpacing, verticalSpacing: .cardGridSpacing) {
             GridRow {
                 TextCardContainer(title, text1, level: 0)
                 TextCardContainer(title, text2, level: 0)

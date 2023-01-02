@@ -5,46 +5,83 @@ struct DiaryDetailView: View {
     @ObservedObject var diaryData: DiaryData
     @Binding var diary: Diary
     var index: Int
-    var isScaling: Bool
     
     @Environment(\.colorScheme) private var colorScheme
     
     @State private var isEditing: Bool = false
+    @State private var isAddingCard: Bool = false
+    @State private var deleteAlert: Bool = false
     @State private var delete: Bool = false
-    
-    // MARK: - displayData
+
     private var displayData: [[(card: DiaryCardData, index: Int)]] {
-        var data: [[(card: DiaryCardData, index: Int)]] = [] // 显示的日记行及内容信息
-        var columnIndex: Int = 0 // 每个日记行的索引
-        var cardIndex: Int = 0 // 每个日记卡片的索引
-        while cardIndex < diary.cardData.count {
-            data.append([]) // 新建日记行
-            var rowColumn: Int = 0 // 当前日记行已经使用的列数
-            while rowColumn <= diary.column {
-                if cardIndex < diary.cardData.count { // 判断当前卡片索引是否在范围内
-                    let card = diary.cardData[cardIndex] // 当前的卡片
-                    let cardColumn = card.column // 当前卡片所占的列数
-                    if rowColumn + cardColumn <= diary.column { // 判断当前行是否能容纳该卡片
-                        data[columnIndex].append((card: card, index: cardIndex)) // 向当前行添加该卡片
-                        rowColumn += cardColumn // 更新当前日记行已经使用的列数
-                        cardIndex += 1 // 更新当前的卡片索引
-                    } else {
-                        break
-                    }
-                } else {
-                    break
-                }
-            }
-            columnIndex += 1 // 更新当前的行索引
-        }
-        return data
+        createDisplayData(diary)
     }
     
-    init(_ diaryData: DiaryData, _ diary: Binding<Diary>, _ index: Int, isScaling: Bool = false) {
+    init(_ diaryData: DiaryData, _ diary: Binding<Diary>, _ index: Int) {
         self.diaryData = diaryData
         self._diary = diary
         self.index = index
-        self.isScaling = isScaling
+    }
+    
+    // MARK: - AddCardView
+    struct AddCardView: View {
+        @Binding var diary: Diary
+        
+        @Environment(\.dismiss) private var dismiss
+        
+        init(_ diary: Binding<Diary>) {
+            self._diary = diary
+        }
+        
+        // MARK: - CardPreviewView
+        struct CardPreviewView<Card: View>: View {
+            @Binding var diary: Diary
+            var name: String
+            var card: Card
+            var data: DiaryCard
+            var dismiss: DismissAction
+            
+            init(_ diary: Binding<Diary>, _ name: String, _ data: DiaryCard, dismiss: DismissAction, @ViewBuilder card: () -> Card) {
+                self._diary = diary
+                self.name = name
+                self.card = card()
+                self.data = data
+                self.dismiss = dismiss
+            }
+            
+            var body: some View {
+                VStack {
+                    Button {
+                        withAnimation(.easeInOut(duration: .animationTime)) {
+                            diary.cardData.append(DiaryCardData(data))
+                        }
+                        dismiss()
+                    } label: {
+                        card
+                    }
+                    .buttonStyle(PlainButtonStyle())
+                    Text(name)
+                        .resumeFont(level: 0)
+                }
+            }
+        }
+        
+        var body: some View {
+            ScrollView(.vertical) {
+                LazyVGrid(columns: [GridItem(.adaptive(minimum: 160), spacing: .cardGridSpacing)], spacing: .cardGridSpacing) {
+                    CardPreviewView($diary, "文本段落", .text(CardDocument.text), dismiss: dismiss) {
+                        TextCard(.constant(CardDocument.text), false)
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+                    CardPreviewView($diary, "睡眠时长", .sleep(CardDocument.sleep), dismiss: dismiss) {
+                        SleepCard(.constant(CardDocument.sleep), false)
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+                }
+                .padding()
+                .padding(.vertical)
+            }
+        }
     }
     
     // MARK: - 组件
@@ -53,19 +90,20 @@ struct DiaryDetailView: View {
             // MARK: -
             Text("该日记已被删除")
                 .resumeFont(level: 0)
+                .navigationTitle("")
         } else {
             // MARK: -
             ScrollView(.vertical) {
-                Grid(alignment: .topLeading) {
+                Grid(alignment: .topLeading, horizontalSpacing: .cardGridSpacing, verticalSpacing: .cardGridSpacing) {
                     ForEach(displayData, id: \.self.first?.index) { column in
                         GridRow {
                             ForEach(column, id: \.self.index) { card in
                                 DiaryCardView(
-                                    Binding(get: {
+                                    Binding {
                                         card.card
-                                    }, set: { newValue in
+                                    } set: { newValue in
                                         diary.cardData[card.index] = newValue
-                                    }), isEditing
+                                    }, isEditing
                                 )
                             }
                         }
@@ -78,29 +116,101 @@ struct DiaryDetailView: View {
                 }
                 .padding()
             }
-            .background(Color.secondaryBackground)
+            .navigationTitle($diary.name)
+#if os(iOS)
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbarTitleMenu {
+                RenameButton()
+            }
+            .background(colorScheme == .light ? Color.secondaryBackground : Color.secondaryBackground)
+#endif
+            // MARK: - 工具栏
             .toolbar {
-                if !isScaling {
+                ToolbarItem(placement: .primaryAction) {
+                    Button {
+                        withAnimation(.easeInOut(duration: .animationTime)) {
+                            isEditing.toggle()
+                        }
+                    } label: {
+                        Label(isEditing ? "完成" : "编辑", systemImage: isEditing ? "checkmark" : "square.and.pencil")
+                    }
+                }
+                if isEditing {
+                    ToolbarItem(placement: .primaryAction) {
+                        Button {
+                            isAddingCard.toggle()
+                        } label: {
+                            Label("添加", systemImage: "plus")
+                        }
+                    }
+                } else {
                     ToolbarItem(placement: .primaryAction) {
                         Button {
                             withAnimation(.easeInOut(duration: .animationTime)) {
-                                delete = true
-                                var _: Diary = diaryData.diaryData.remove(at: index)
+                                deleteAlert.toggle()
                             }
                         } label: {
                             Label("删除", systemImage: "trash")
                         }
                     }
-                    ToolbarItem(placement: .primaryAction) {
-                        Button {
-                            withAnimation(.easeInOut(duration: .animationTime)) {
-                                isEditing.toggle()
-                            }
-                        } label: {
-                            Label(isEditing ? "完成" : "编辑", systemImage: isEditing ? "checkmark" : "square.and.pencil")
-                        }
-                    }
                 }
+            }
+            .toolbarRole(.editor)
+            .alert(isPresented: $deleteAlert) {
+#if os(iOS)
+                Alert(
+                    title: Text("删除日记"),
+                    message: Text("您确定要删除该日记吗？"),
+                    primaryButton: .default(
+                        Text("取消"),
+                        action: {
+                            deleteAlert.toggle()
+                        }
+                    ),
+                    secondaryButton: .destructive(
+                        Text("删除"),
+                        action: {
+                            withAnimation(.easeInOut(duration: .animationTime)) {
+                                delete.toggle()
+                                var _: Diary = diaryData.diaryData.remove(at: index)
+                            }
+                        }
+                    )
+                )
+#else
+                Alert(
+                    title: Text("删除日记"),
+                    message: Text("您确定要删除该日记吗？"),
+                    primaryButton: .default(
+                        Text("删除"),
+                        action: {
+                            withAnimation(.easeInOut(duration: .animationTime)) {
+                                delete.toggle()
+                                var _: Diary = diaryData.diaryData.remove(at: index)
+                            }
+                        }
+                    ),
+                    secondaryButton: .default(
+                        Text("取消"),
+                        action: {
+                            deleteAlert.toggle()
+                        }
+                    )
+                )
+#endif
+            }
+            .sheet(isPresented: $isAddingCard) {
+#if os(iOS)
+                if UIDevice.current.userInterfaceIdiom == .pad {
+                    AddCardView($diary)
+                } else {
+                    AddCardView($diary)
+                        .presentationDetents([.fraction(0.4), .fraction(0.6), .fraction(0.8)])
+                }
+#else
+                AddCardView($diary)
+                    .frame(minWidth: 600, maxWidth: 1200, minHeight: 400, maxHeight: 800)
+#endif
             }
         }
     }
@@ -124,10 +234,17 @@ struct DiaryDetailView_Previews: PreviewProvider {
     
     static var previews: some View {
 #if os(iOS)
-        NavigationSplitView {
-            DiaryDetailViewContainer()
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-        } detail: {}
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            NavigationSplitView {} detail: {
+                DiaryDetailViewContainer()
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+            }
+        } else {
+            NavigationSplitView {
+                DiaryDetailViewContainer()
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+            } detail: {}
+        }
 #else
         DiaryDetailViewContainer()
             .frame(maxWidth: .infinity, maxHeight: .infinity)

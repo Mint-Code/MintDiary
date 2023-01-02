@@ -64,11 +64,6 @@ struct DiaryListView: View {
                     if let diary = $diaryData.diaryData[index] {
                         NavigationLink {
                             DiaryDetailView(diaryData, diary, index)
-                                .navigationTitle(diary.name)
-#if os(iOS)
-                                .navigationBarTitleDisplayMode(.inline)
-#endif
-                                .toolbarRole(.editor)
                         } label: {
                             Label(diary.name.wrappedValue, systemImage: diary.icon.wrappedValue)
                         }

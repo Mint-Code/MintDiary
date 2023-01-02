@@ -3,7 +3,7 @@ import SwiftUI
 // MARK: - StartView
 struct StartView: View {
     @ObservedObject var diaryData: DiaryData
-    
+
 #if os(iOS)
     @Environment(\.dismiss) private var dismiss
 #endif
@@ -47,20 +47,60 @@ struct StartView: View {
                     dismiss()
 #endif
                 } label: {
-                    DiaryDetailView(diaryData, .constant(diary), 0, isScaling: true)
-                        .padding()
-                        .padding()
-                        .background(Color.secondaryBackground)
-                        .cornerRadius(.startDocumentCornerRadius * 4)
-                        .shadow(radius: .startDocumentShadowRadius * 4, x: .startDocumentShadowX * 4, y: .startDocumentShadowY * 4)
-                        .frame(width: .startDocumentWidth * 4, height: .startDocumentHeight * 4)
-                        .scaleEffect(0.25)
-                        .frame(width: .startDocumentWidth, height: .startDocumentHeight)
+                    DiaryPreviewView(diary)
                 }
                 .buttonStyle(PlainButtonStyle())
                 Text(name)
                     .resumeFont(level: 0)
             }
+        }
+    }
+    
+    struct DiaryPreviewView: View {
+        var diary: Diary
+        
+        @Environment(\.colorScheme) private var colorScheme
+        
+        private var displayData: [[(card: DiaryCardData, index: Int)]] {
+            createDisplayData(diary)
+        }
+        
+        init(_ diary: Diary) {
+            self.diary = diary
+        }
+        
+        var body: some View {
+            ScrollView(.vertical) {
+                Grid(alignment: .topLeading) {
+                    ForEach(displayData, id: \.self.first?.index) { column in
+                        GridRow {
+                            ForEach(column, id: \.self.index) { card in
+                                DiaryCardView(
+                                    Binding(get: {
+                                        card.card
+                                    }, set: { newValue in }), false
+                                )
+                            }
+                        }
+                    }
+                    GridRow {
+                        Color.clear
+                            .frame(height: 0)
+                            .gridCellColumns(diary.column)
+                    }
+                }
+                .padding()
+            }
+            .padding()
+            .padding()
+            .background(colorScheme == .light ? Color.brightBackground : Color.secondaryBackground)
+            .cornerRadius(.startDocumentCornerRadius * 4)
+            .shadow(radius: .startDocumentShadowRadius * 4, x: .startDocumentShadowX * 4, y: .startDocumentShadowY * 4)
+            .frame(width: .startDocumentWidth * 4, height: .startDocumentHeight * 4)
+            .padding(.bottom)
+            .padding(.bottom)
+            .scaleEffect(0.25)
+            .frame(width: .startDocumentWidth, height: .startDocumentGridHeight)
         }
     }
     
@@ -70,42 +110,14 @@ struct StartView: View {
                 LazyVGrid(columns: [GridItem(.adaptive(minimum: .startDocumentGridWidth))]) {
 #if os(iOS)
                     // MARK: -
-                    DocumentView(
-                        "空白日记",
-                        Diary("新建空白日记", [], icon: "book", column: 2),
-                        diaryData: diaryData,
-                        dismiss: dismiss
-                    )
+                    DocumentView("空白日记", DiaryDocument.empty, diaryData: diaryData, dismiss: dismiss)
                     // MARK: -
-                    DocumentView(
-                        "文本日记",
-                        Diary(
-                            "新建文本日记",
-                            [DiaryCardData(.text(TextModel("段落", "这是一段文字。\n这是一段文字。", level: 0)))],
-                            icon: "doc",
-                            column: 1
-                        ),
-                        diaryData: diaryData,
-                        dismiss: dismiss
-                    )
+                    DocumentView("文本日记", DiaryDocument.text, diaryData: diaryData, dismiss: dismiss)
 #else
                     // MARK: -
-                    DocumentView(
-                        "空白日记",
-                        Diary("新建空白日记", [], icon: "book", column: 2),
-                        diaryData: diaryData
-                    )
+                    DocumentView("空白日记", DiaryDocument.empty, diaryData: diaryData)
                     // MARK: -
-                    DocumentView(
-                        "文本日记",
-                        Diary(
-                            "新建文本日记",
-                            [DiaryCardData(.text(TextModel("段落", "这是一段文字。\n这是一段文字。", level: 0)))],
-                            icon: "doc",
-                            column: 1
-                        ),
-                        diaryData: diaryData
-                    )
+                    DocumentView("文本日记", DiaryDocument.text, diaryData: diaryData)
 #endif
                 }
                 .padding()

@@ -63,26 +63,28 @@ extension Color {
 extension CGFloat {
     static let lineSpacing: CGFloat = 4
     
-    static let cardCornerRadius: CGFloat = 30
-    static let cardShadowRadius: CGFloat = 5
+    static let cardCornerRadius: CGFloat = 20
+    static let cardShadowRadius: CGFloat = 4
     static let cardShadowX: CGFloat = 0
     static let cardShadowY: CGFloat = 3
+    
+    static let cardGridSpacing: CGFloat = 15
     
     static let textRectangleWidth: CGFloat = 5
     static let textRectangleCornerRadius: CGFloat = 3
     
-    static let progressHeight: CGFloat = 12
+    static let progressHeight: CGFloat = 15
     
     static let scrollPaneWidth: CGFloat = 6
     
-    static let startDocumentCornerRadius: CGFloat = 22
-    static let startDocumentShadowRadius: CGFloat = 5
+    static let startDocumentCornerRadius: CGFloat = 20
+    static let startDocumentShadowRadius: CGFloat = 4
     static let startDocumentShadowX: CGFloat = 0
     static let startDocumentShadowY: CGFloat = 3
     static let startDocumentWidth: CGFloat = 140
     static let startDocumentHeight: CGFloat = 170
     static let startDocumentGridWidth: CGFloat = 150
-    static let startDocumentGridHeight: CGFloat = 180
+    static let startDocumentGridHeight: CGFloat = 170
 }
 
 extension Double {
