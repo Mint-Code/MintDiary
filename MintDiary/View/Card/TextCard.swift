@@ -3,17 +3,18 @@ import SwiftUI
 // MARK: - TextCard
 struct TextCard: View {
     @Binding var model: TextModel
+    var diaryColumn: Int
     var isEditing: Bool
     
     @Environment(\.colorScheme) private var colorScheme
     
     @State private var textHeight: CGFloat = 0
-    @State private var buttonWidth: CGFloat = 0
     @State private var textCenter: Bool
     
-    init(_ model: Binding<TextModel>, _ isEditing: Bool) {
+    init(_ model: Binding<TextModel>, _ isEditing: Bool, diaryColumn: Int) {
         self._model = model
         self.isEditing = isEditing
+        self.diaryColumn = diaryColumn
         self._textCenter = State(initialValue: model.textCenter.wrappedValue)
     }
     
@@ -22,14 +23,7 @@ struct TextCard: View {
         VStack {
             if isEditing {
                 // MARK: -
-                ZStack(alignment: .topTrailing) {
-                    //TextEditor(text: $model.title)
-                    TextField("", text: $model.title)
-                        .textFieldStyle(PlainTextFieldStyle())
-                        .headlineFont(level: model.level)
-                        .padding(.horizontal)
-                        .padding(.horizontal)
-                        .padding(.horizontal, buttonWidth)
+                HStack {
                     Button {
                         withAnimation(.easeInOut(duration: .animationTime)) {
                             textCenter.toggle()
@@ -37,14 +31,12 @@ struct TextCard: View {
                         model.textCenter.toggle()
                     } label: {
                         Image(systemName: model.textCenter ? "text.alignleft" : "text.aligncenter")
-                            .font(.headline)
-                            .foregroundColor(.textColor(model.level))
                     }
-                    .padding(.horizontal)
-                    .buttonStyle(PlainButtonStyle())
-                    .readSize { size in
-                        buttonWidth = size.width
-                    }
+                    .toolbarButtonStyle(level: model.level)
+                    .padding(.leading)
+                    TextField("请输入……", text: $model.title)
+                        .titleTextFieldStyle(level: model.level)
+                    MoreButtonView($model, diaryColumn: diaryColumn)
                 }
             } else {
                 // MARK: -
@@ -57,17 +49,13 @@ struct TextCard: View {
                 if textCenter {
                     // MARK: -
                     TextEditor(text: $model.text)
-                        .scrollContentBackground(.hidden)
                         .bodyFont(.center, .center, level: model.level)
-                        .padding(.horizontal)
-                        .padding(.horizontal)
+                        .contentTextFieldStyle(level: model.level)
                 } else {
                     // MARK: -
                     TextEditor(text: $model.text)
-                        .scrollContentBackground(.hidden)
                         .bodyFont(level: model.level)
-                        .padding(.horizontal)
-                        .padding(.horizontal)
+                        .contentTextFieldStyle(level: model.level)
                 }
             } else {
                 if textCenter {
@@ -122,33 +110,35 @@ struct TextCard_Previews: PreviewProvider {
         }
         
         var body: some View {
-            TextCard($model, false)
+            TextCard($model, true, diaryColumn: 2)
         }
     }
     
     static var previews: some View {
-        Grid(alignment: .topLeading, horizontalSpacing: .cardGridSpacing, verticalSpacing: .cardGridSpacing) {
-            GridRow {
-                TextCardContainer(title, text1, level: 0)
-                TextCardContainer(title, text2, level: 0)
+        ScrollView(.vertical) {
+            Grid(alignment: .topLeading, horizontalSpacing: .cardGridSpacing, verticalSpacing: .cardGridSpacing) {
+                GridRow {
+                    TextCardContainer(title, text1, level: 0)
+                    TextCardContainer(title, text2, level: 0)
+                }
+                GridRow {
+                    TextCardContainer(title, text1, level: 1)
+                    TextCardContainer(title, text2, level: 2)
+                }
+                GridRow {
+                    TextCardContainer(title, text1, level: 3)
+                    TextCardContainer(title, text2, level: 4)
+                }
+                GridRow {
+                    TextCardContainer(title, text1, level: 5)
+                    TextCardContainer(title, text2, level: 6)
+                        .preferredColorScheme(.light)
+                        //.preferredColorScheme(.dark)
+                }
             }
-            GridRow {
-                TextCardContainer(title, text1, level: 1)
-                TextCardContainer(title, text2, level: 2)
-            }
-            GridRow {
-                TextCardContainer(title, text1, level: 3)
-                TextCardContainer(title, text2, level: 4)
-            }
-            GridRow {
-                TextCardContainer(title, text1, level: 5)
-                TextCardContainer(title, text2, level: 6)
-                    .preferredColorScheme(.light)
-                    //.preferredColorScheme(.dark)
-            }
+            .padding()
         }
-        .frame(width: 600, height: 700)
-        .padding()
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.secondaryBackground)
     }
 }

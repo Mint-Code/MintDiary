@@ -12,8 +12,8 @@ struct StartView: View {
         self.diaryData = diaryData
     }
     
-    // MARK: - DocumentView
-    struct DocumentView: View {
+    // MARK: - TemplateView
+    struct TemplateView: View {
         @ObservedObject var diaryData: DiaryData
         var name: String
         var diary: Diary
@@ -47,16 +47,17 @@ struct StartView: View {
                     dismiss()
 #endif
                 } label: {
-                    DiaryPreviewView(diary)
+                    TemplatePreviewView(diary)
                 }
                 .buttonStyle(PlainButtonStyle())
+                .redacted(reason: .placeholder)
                 Text(name)
-                    .resumeFont(level: 0)
+                    .resumeFont()
             }
         }
     }
     
-    struct DiaryPreviewView: View {
+    struct TemplatePreviewView: View {
         var diary: Diary
         
         @Environment(\.colorScheme) private var colorScheme
@@ -75,10 +76,10 @@ struct StartView: View {
                     ForEach(displayData, id: \.self.first?.index) { column in
                         GridRow {
                             ForEach(column, id: \.self.index) { card in
-                                DiaryCardView(
+                                CardView(
                                     Binding(get: {
                                         card.card
-                                    }, set: { newValue in }), false
+                                    }, set: { newValue in }), false, diaryColumn: 2
                                 )
                             }
                         }
@@ -94,30 +95,30 @@ struct StartView: View {
             .padding()
             .padding()
             .background(colorScheme == .light ? Color.brightBackground : Color.secondaryBackground)
-            .cornerRadius(.startDocumentCornerRadius * 4)
-            .shadow(radius: .startDocumentShadowRadius * 4, x: .startDocumentShadowX * 4, y: .startDocumentShadowY * 4)
-            .frame(width: .startDocumentWidth * 4, height: .startDocumentHeight * 4)
+            .cornerRadius(.diaryTemplateCornerRadius * 4)
+            .shadow(radius: .diaryTemplateShadowRadius * 4, x: .diaryTemplateShadowX * 4, y: .diaryTemplateShadowY * 4)
+            .frame(width: .diaryTemplateWidth * 4, height: .diaryTemplateHeight * 4)
             .padding(.bottom)
             .padding(.bottom)
             .scaleEffect(0.25)
-            .frame(width: .startDocumentWidth, height: .startDocumentGridHeight)
+            .frame(width: .diaryTemplateWidth, height: .diaryTemplateGridHeight)
         }
     }
     
     var body: some View {
         List {
             Section("基本") {
-                LazyVGrid(columns: [GridItem(.adaptive(minimum: .startDocumentGridWidth))]) {
+                LazyVGrid(columns: [GridItem(.adaptive(minimum: .diaryTemplateGridWidth))]) {
 #if os(iOS)
                     // MARK: -
-                    DocumentView("空白日记", DiaryDocument.empty, diaryData: diaryData, dismiss: dismiss)
+                    TemplateView("空白日记", DiaryTemplate.empty, diaryData: diaryData, dismiss: dismiss)
                     // MARK: -
-                    DocumentView("文本日记", DiaryDocument.text, diaryData: diaryData, dismiss: dismiss)
+                    TemplateView("文本日记", DiaryTemplate.text, diaryData: diaryData, dismiss: dismiss)
 #else
                     // MARK: -
-                    DocumentView("空白日记", DiaryDocument.empty, diaryData: diaryData)
+                    TemplateView("空白日记", DiaryTemplate.empty, diaryData: diaryData)
                     // MARK: -
-                    DocumentView("文本日记", DiaryDocument.text, diaryData: diaryData)
+                    TemplateView("文本日记", DiaryTemplate.text, diaryData: diaryData)
 #endif
                 }
                 .padding()
@@ -127,6 +128,7 @@ struct StartView: View {
         .background(Color.brightBackground)
 #if os(iOS)
         .navigationTitle("新建日记")
+        .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .cancellationAction) {
                 Button {

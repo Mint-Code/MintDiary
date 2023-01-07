@@ -7,7 +7,7 @@ extension FileManager {
              return try self.url(for: .documentDirectory, in: .userDomainMask,  appropriateFor: nil, create: true)
           }
           catch let error {
-              fatalError("获得本地存储路径失败：\(error)")
+              fatalError("获得本地存储路径失败：\(error.localizedDescription)")
           }
     }
     

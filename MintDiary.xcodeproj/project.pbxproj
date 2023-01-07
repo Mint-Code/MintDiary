@@ -7,7 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A90357D5295AD1F6008554A8 /* DiaryCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90357D4295AD1F6008554A8 /* DiaryCardView.swift */; };
+		A90357D5295AD1F6008554A8 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90357D4295AD1F6008554A8 /* CardView.swift */; };
+		A928845E2967ADBB00CBC5AC /* MoreButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A928845D2967ADBB00CBC5AC /* MoreButtonView.swift */; };
+		A9304AAF29651ADC00D14BAE /* ButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9304AAE29651ADC00D14BAE /* ButtonStyle.swift */; };
+		A93194A32966972000D6A9A0 /* MenuBarDiaryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93194A22966972000D6A9A0 /* MenuBarDiaryListView.swift */; };
+		A93194A52966996C00D6A9A0 /* MenuBarDiaryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93194A42966996C00D6A9A0 /* MenuBarDiaryDetailView.swift */; };
+		A95474792963D68300EEBA6A /* TextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95474782963D68300EEBA6A /* TextFieldStyle.swift */; };
 		A95702BC2957303700519766 /* DiaryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95702BB2957303700519766 /* DiaryListView.swift */; };
 		A964A6992961B4BA00AAEE08 /* CreateDisplayDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A964A6982961B4BA00AAEE08 /* CreateDisplayDataHelper.swift */; };
 		A976F3B92956895F00309E92 /* ReadSizeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A976F3B82956895F00309E92 /* ReadSizeHelper.swift */; };
@@ -30,7 +35,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A90357D4295AD1F6008554A8 /* DiaryCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryCardView.swift; sourceTree = "<group>"; };
+		A90357D4295AD1F6008554A8 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		A928845D2967ADBB00CBC5AC /* MoreButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreButtonView.swift; sourceTree = "<group>"; };
+		A9304AAE29651ADC00D14BAE /* ButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyle.swift; sourceTree = "<group>"; };
+		A93194A22966972000D6A9A0 /* MenuBarDiaryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarDiaryListView.swift; sourceTree = "<group>"; };
+		A93194A42966996C00D6A9A0 /* MenuBarDiaryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarDiaryDetailView.swift; sourceTree = "<group>"; };
+		A95474782963D68300EEBA6A /* TextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldStyle.swift; sourceTree = "<group>"; };
 		A95702BB2957303700519766 /* DiaryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryListView.swift; sourceTree = "<group>"; };
 		A964A6982961B4BA00AAEE08 /* CreateDisplayDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDisplayDataHelper.swift; sourceTree = "<group>"; };
 		A976F3B82956895F00309E92 /* ReadSizeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadSizeHelper.swift; sourceTree = "<group>"; };
@@ -64,10 +74,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A93194A1296696FE00D6A9A0 /* MenuBar */ = {
+			isa = PBXGroup;
+			children = (
+				A93194A22966972000D6A9A0 /* MenuBarDiaryListView.swift */,
+				A93194A42966996C00D6A9A0 /* MenuBarDiaryDetailView.swift */,
+			);
+			path = MenuBar;
+			sourceTree = "<group>";
+		};
 		A9514F83296025FC00FECEB3 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				A90357D4295AD1F6008554A8 /* DiaryCardView.swift */,
+				A90357D4295AD1F6008554A8 /* CardView.swift */,
+				A928845D2967ADBB00CBC5AC /* MoreButtonView.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -101,12 +121,12 @@
 		A9840533294D3F4F00002426 /* MintDiary */ = {
 			isa = PBXGroup;
 			children = (
-				A9840534294D3F4F00002426 /* MintDiaryApp.swift */,
-				A9840548294D4A9D00002426 /* Constant.swift */,
 				A9EABF9D295EC2CF0010F620 /* Style */,
 				A976F3B62956893C00309E92 /* Helper */,
 				A9CE12AA2951445000737FCC /* Model */,
 				A9840542294D436B00002426 /* View */,
+				A9840534294D3F4F00002426 /* MintDiaryApp.swift */,
+				A9840548294D4A9D00002426 /* Constant.swift */,
 				A9840538294D3F5000002426 /* Assets.xcassets */,
 				A984053A294D3F5000002426 /* Preview Content */,
 			);
@@ -124,12 +144,12 @@
 		A9840542294D436B00002426 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				A9514F83296025FC00FECEB3 /* Helper */,
+				A9840543294D437800002426 /* Card */,
+				A93194A1296696FE00D6A9A0 /* MenuBar */,
 				A9840536294D3F4F00002426 /* ContentView.swift */,
 				A95702BB2957303700519766 /* DiaryListView.swift */,
 				A989F70C295738CD00BAA6E8 /* DiaryDetailView.swift */,
 				A9E311A8295BD20600D59C49 /* StartView.swift */,
-				A9840543294D437800002426 /* Card */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -137,6 +157,7 @@
 		A9840543294D437800002426 /* Card */ = {
 			isa = PBXGroup;
 			children = (
+				A9514F83296025FC00FECEB3 /* Helper */,
 				A9840544294D438900002426 /* TextCard.swift */,
 				A9D5B40A294E01FB007AD6BC /* SleepCard.swift */,
 			);
@@ -146,8 +167,8 @@
 		A9CE12AA2951445000737FCC /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				A9BB46142956CE8400A7E474 /* DiaryData.swift */,
 				A9CE12AB2951445900737FCC /* Card */,
+				A9BB46142956CE8400A7E474 /* DiaryData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -167,6 +188,8 @@
 			children = (
 				A9B866CC295BF0ED0004B237 /* CardStyle.swift */,
 				A9EABF9E295EC2EA0010F620 /* TextStyle.swift */,
+				A95474782963D68300EEBA6A /* TextFieldStyle.swift */,
+				A9304AAE29651ADC00D14BAE /* ButtonStyle.swift */,
 			);
 			path = Style;
 			sourceTree = "<group>";
@@ -212,6 +235,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				"zh-Hans",
+				Base,
 			);
 			mainGroup = A9840528294D3F4F00002426;
 			productRefGroup = A9840532294D3F4F00002426 /* Products */;
@@ -242,20 +266,25 @@
 			files = (
 				A9CE12AD2951446C00737FCC /* TextModel.swift in Sources */,
 				A9BB46172956D3D100A7E474 /* CardModel.swift in Sources */,
-				A90357D5295AD1F6008554A8 /* DiaryCardView.swift in Sources */,
+				A90357D5295AD1F6008554A8 /* CardView.swift in Sources */,
 				A9840545294D438900002426 /* TextCard.swift in Sources */,
 				A9EABF9F295EC2EA0010F620 /* TextStyle.swift in Sources */,
 				A9840549294D4A9D00002426 /* Constant.swift in Sources */,
+				A93194A52966996C00D6A9A0 /* MenuBarDiaryDetailView.swift in Sources */,
 				A9B866CD295BF0ED0004B237 /* CardStyle.swift in Sources */,
+				A928845E2967ADBB00CBC5AC /* MoreButtonView.swift in Sources */,
 				A976F3B92956895F00309E92 /* ReadSizeHelper.swift in Sources */,
 				A9E311A9295BD20600D59C49 /* StartView.swift in Sources */,
 				A9840537294D3F4F00002426 /* ContentView.swift in Sources */,
 				A9BB46132956CE5500A7E474 /* FileHelper.swift in Sources */,
+				A93194A32966972000D6A9A0 /* MenuBarDiaryListView.swift in Sources */,
 				A976F3BB2956931900309E92 /* SleepModel.swift in Sources */,
 				A964A6992961B4BA00AAEE08 /* CreateDisplayDataHelper.swift in Sources */,
+				A9304AAF29651ADC00D14BAE /* ButtonStyle.swift in Sources */,
 				A989F70D295738CD00BAA6E8 /* DiaryDetailView.swift in Sources */,
 				A9BB46152956CE8400A7E474 /* DiaryData.swift in Sources */,
 				A9D5B40B294E01FB007AD6BC /* SleepCard.swift in Sources */,
+				A95474792963D68300EEBA6A /* TextFieldStyle.swift in Sources */,
 				A95702BC2957303700519766 /* DiaryListView.swift in Sources */,
 				A9840535294D3F4F00002426 /* MintDiaryApp.swift in Sources */,
 			);
@@ -386,12 +415,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 0;
 				DEVELOPMENT_ASSET_PATHS = "\"MintDiary/Preview Content\"";
 				DEVELOPMENT_TEAM = 424Z47PA9V;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "薄荷日记";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -402,7 +432,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.1.0;
+				"MARKETING_VERSION[sdk=iphoneos*]" = 1.0.2;
+				"MARKETING_VERSION[sdk=macosx*]" = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = MintCode.MintDiary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
@@ -420,12 +452,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 0;
 				DEVELOPMENT_ASSET_PATHS = "\"MintDiary/Preview Content\"";
 				DEVELOPMENT_TEAM = 424Z47PA9V;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "薄荷日记";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -436,7 +469,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.1.0;
+				"MARKETING_VERSION[sdk=iphoneos*]" = 1.0.2;
+				"MARKETING_VERSION[sdk=macosx*]" = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = MintCode.MintDiary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";

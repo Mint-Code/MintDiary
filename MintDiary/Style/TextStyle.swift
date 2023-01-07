@@ -2,16 +2,16 @@ import SwiftUI
 
 // MARK: - 文字风格
 extension View {
-    func bodyFont(_ textAlignment: TextAlignment = .leading, _ alignment: Alignment = .leading, level: Int) -> some View {
+    func bodyFont(_ textAlignment: TextAlignment = .leading, _ alignment: Alignment = .leading, level: Int = 0) -> some View {
         self
-            .font(.body)
+            .font(.body.weight(.light))
             .frame(maxWidth: .infinity, alignment: alignment)
             .multilineTextAlignment(textAlignment)
             .lineSpacing(.lineSpacing)
             .foregroundColor(.textColor(level))
     }
     
-    func headlineFont(_ textAlignment: TextAlignment = .center, _ alignment: Alignment = .center, level: Int) -> some View {
+    func headlineFont(_ textAlignment: TextAlignment = .center, _ alignment: Alignment = .center, level: Int = 0) -> some View {
         self
             .font(.headline)
             .frame(maxWidth: .infinity, alignment: alignment)
@@ -20,11 +20,17 @@ extension View {
             .foregroundColor(.secondaryColor(level))
     }
     
-    func resumeFont(_ textAlignment: TextAlignment = .center, _ alignment: Alignment = .center, level: Int) -> some View {
+    func resumeFont(_ textAlignment: TextAlignment = .center, _ alignment: Alignment = .center, level: Int = 0) -> some View {
         self
-            .font(.body)
+            .font(.body.weight(.ultraLight))
             .frame(maxWidth: .infinity, alignment: alignment)
             .multilineTextAlignment(textAlignment)
-            .foregroundColor(.opacityColor(level))
+            .foregroundColor(.secondaryColor(level))
+    }
+    
+    func xmarkFont() -> some View {
+        self
+            .font(.system(size: .xmarkSize, weight: .light))
+            .foregroundColor(.accentColor)
     }
 }

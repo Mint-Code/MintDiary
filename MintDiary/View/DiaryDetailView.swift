@@ -12,6 +12,9 @@ struct DiaryDetailView: View {
     @State private var isAddingCard: Bool = false
     @State private var deleteAlert: Bool = false
     @State private var delete: Bool = false
+#if os(macOS)
+    @State private var isRenaming: Bool = false
+#endif
 
     private var displayData: [[(card: DiaryCardData, index: Int)]] {
         createDisplayData(diary)
@@ -59,27 +62,40 @@ struct DiaryDetailView: View {
                     } label: {
                         card
                     }
-                    .buttonStyle(PlainButtonStyle())
+                    .buttonStyle(.plain)
                     Text(name)
-                        .resumeFont(level: 0)
+                        .resumeFont()
                 }
             }
         }
         
+        // MARK: -
         var body: some View {
-            ScrollView(.vertical) {
-                LazyVGrid(columns: [GridItem(.adaptive(minimum: 160), spacing: .cardGridSpacing)], spacing: .cardGridSpacing) {
-                    CardPreviewView($diary, "文本段落", .text(CardDocument.text), dismiss: dismiss) {
-                        TextCard(.constant(CardDocument.text), false)
-                    }
-                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-                    CardPreviewView($diary, "睡眠时长", .sleep(CardDocument.sleep), dismiss: dismiss) {
-                        SleepCard(.constant(CardDocument.sleep), false)
-                    }
-                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+            ZStack(alignment: .topLeading) {
+                // MARK: -
+                Button {
+                    dismiss()
+                } label: {
+                    Image(systemName: "xmark")
+                        .xmarkFont()
                 }
+                .buttonStyle(PlainButtonStyle())
                 .padding()
-                .padding(.vertical)
+                // MARK: -
+                ScrollView(.vertical) {
+                    LazyVGrid(columns: [GridItem(.adaptive(minimum: .cardTemplateGridWidth), spacing: .cardGridSpacing)], spacing: .cardGridSpacing) {
+                        CardPreviewView($diary, "文本段落", .text(CardTemplate.text), dismiss: dismiss) {
+                            TextCard(.constant(CardTemplate.text), false, diaryColumn: 1)
+                        }
+                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+                        CardPreviewView($diary, "睡眠时长", .sleep(CardTemplate.sleep), dismiss: dismiss) {
+                            SleepCard(.constant(CardTemplate.sleep), false, diaryColumn: 1)
+                        }
+                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+                    }
+                    .padding()
+                    .padding()
+                }
             }
         }
     }
@@ -98,12 +114,12 @@ struct DiaryDetailView: View {
                     ForEach(displayData, id: \.self.first?.index) { column in
                         GridRow {
                             ForEach(column, id: \.self.index) { card in
-                                DiaryCardView(
+                                CardView(
                                     Binding {
                                         card.card
                                     } set: { newValue in
                                         diary.cardData[card.index] = newValue
-                                    }, isEditing
+                                    }, isEditing, diaryColumn: diary.column
                                 )
                             }
                         }
@@ -125,8 +141,88 @@ struct DiaryDetailView: View {
             .background(colorScheme == .light ? Color.secondaryBackground : Color.secondaryBackground)
 #endif
             // MARK: - 工具栏
-            .toolbar {
-                ToolbarItem(placement: .primaryAction) {
+            .toolbar(id: "DiaryDetailToolbar") {
+#if os(iOS)
+                if UIDevice.current.userInterfaceIdiom == .pad {
+                    // MARK: -
+                    ToolbarItem(id: "Edit", placement: .primaryAction, showsByDefault: true) {
+                        Button {
+                            withAnimation(.easeInOut(duration: .animationTime)) {
+                                isEditing.toggle()
+                            }
+                        } label: {
+                            Label(isEditing ? "完成" : "编辑", systemImage: isEditing ? "checkmark" : "square.and.pencil")
+                        }
+                    }
+                    if isEditing {
+                        ToolbarItem(id: "Add", placement: .primaryAction, showsByDefault: true) {
+                            Button {
+                                isAddingCard.toggle()
+                            } label: {
+                                Label("添加", systemImage: "plus")
+                            }
+                        }
+                    } else {
+                        ToolbarItem(id: "Delete", placement: .primaryAction, showsByDefault: true) {
+                            Button {
+                                withAnimation(.easeInOut(duration: .animationTime)) {
+                                    deleteAlert.toggle()
+                                }
+                            } label: {
+                                Label("删除", systemImage: "trash")
+                            }
+                        }
+                    }
+                } else {
+                    // MARK: -
+                    ToolbarItem(id: "Edit", placement: .navigationBarLeading, showsByDefault: true) {
+                        Button {
+                            withAnimation(.easeInOut(duration: .animationTime)) {
+                                isEditing.toggle()
+                            }
+                        } label: {
+                            Label(isEditing ? "完成" : "编辑", systemImage: isEditing ? "checkmark" : "square.and.pencil")
+                        }
+                    }
+                    if isEditing {
+                        ToolbarItem(id: "Add", placement: .primaryAction, showsByDefault: true) {
+                            Button {
+                                isAddingCard.toggle()
+                            } label: {
+                                Label("添加", systemImage: "plus")
+                            }
+                        }
+                    } else {
+                        ToolbarItem(id: "Delete", placement: .primaryAction, showsByDefault: true) {
+                            Button {
+                                withAnimation(.easeInOut(duration: .animationTime)) {
+                                    deleteAlert.toggle()
+                                }
+                            } label: {
+                                Label("删除", systemImage: "trash")
+                            }
+                        }
+                    }
+                }
+#else
+                // MARK: -
+                ToolbarItem(id: "Rename", placement: .navigation, showsByDefault: true) {
+                    Button {
+                        isRenaming.toggle()
+                    } label: {
+                        Label(isRenaming ? "完成" : "重命名", systemImage: isRenaming ? "checkmark" : "pencil.line")
+                    }
+                    .popover(isPresented: $isRenaming) {
+                        TextField("请输入……", text: $diary.name)
+                            .multilineTextAlignment(.leading)
+                            .padding(.horizontal)
+                            .titleTextFieldStyle()
+                            .bodyFont(level: 0)
+                            .frame(width: 200)
+                            .padding()
+                    }
+                }
+                ToolbarItem(id: "Edit", placement: .primaryAction, showsByDefault: true) {
                     Button {
                         withAnimation(.easeInOut(duration: .animationTime)) {
                             isEditing.toggle()
@@ -135,29 +231,30 @@ struct DiaryDetailView: View {
                         Label(isEditing ? "完成" : "编辑", systemImage: isEditing ? "checkmark" : "square.and.pencil")
                     }
                 }
-                if isEditing {
-                    ToolbarItem(placement: .primaryAction) {
-                        Button {
-                            isAddingCard.toggle()
-                        } label: {
-                            Label("添加", systemImage: "plus")
-                        }
+                ToolbarItem(id: "Add", placement: .primaryAction, showsByDefault: true) {
+                    Button {
+                        isAddingCard.toggle()
+                    } label: {
+                        Label("添加", systemImage: "plus")
                     }
-                } else {
-                    ToolbarItem(placement: .primaryAction) {
-                        Button {
-                            withAnimation(.easeInOut(duration: .animationTime)) {
-                                deleteAlert.toggle()
-                            }
-                        } label: {
-                            Label("删除", systemImage: "trash")
-                        }
-                    }
+                    .disabled(isEditing ? false : true)
                 }
+                ToolbarItem(id: "Delete", placement: .primaryAction, showsByDefault: true) {
+                    Button {
+                        withAnimation(.easeInOut(duration: .animationTime)) {
+                            deleteAlert.toggle()
+                        }
+                    } label: {
+                        Label("删除", systemImage: "trash")
+                    }
+                    .disabled(isEditing ? true : false)
+                }
+#endif
             }
             .toolbarRole(.editor)
             .alert(isPresented: $deleteAlert) {
 #if os(iOS)
+                // MARK: -
                 Alert(
                     title: Text("删除日记"),
                     message: Text("您确定要删除该日记吗？"),
@@ -178,6 +275,7 @@ struct DiaryDetailView: View {
                     )
                 )
 #else
+                // MARK: -
                 Alert(
                     title: Text("删除日记"),
                     message: Text("您确定要删除该日记吗？"),

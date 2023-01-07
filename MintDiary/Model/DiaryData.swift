@@ -18,7 +18,7 @@ class DiaryData: ObservableObject {
             let fileURL = try DiaryData.getDataFileURL()
             let fileData = try Data(contentsOf: fileURL)
             diaryData = try JSONDecoder().decode([Diary].self, from: fileData)
-            print("数据加载：\(String(describing: $diaryData.count))")
+            print("数据加载。")
         } catch {
             print("加载失败。")
         }
@@ -77,8 +77,8 @@ enum DiaryCard: Equatable, CaseIterable, Codable {
     
     static var allCases: [DiaryCard] {
         [
-            .text(CardDocument.text),
-            .sleep(CardDocument.sleep)
+            .text(CardTemplate.text),
+            .sleep(CardTemplate.sleep)
         ]
     }
 }
@@ -105,8 +105,8 @@ struct DiaryCardData: Identifiable, Equatable, Hashable, Codable {
     }
 }
 
-// MARK: - DiaryDocument
-struct DiaryDocument {
+// MARK: - DiaryTemplate
+struct DiaryTemplate {
     static var empty = Diary("新建空白日记", [], icon: "book", column: 2)
     static var text = Diary(
         "新建文本日记",
@@ -116,8 +116,8 @@ struct DiaryDocument {
     )
 }
 
-// MARK: - CardDocument
-struct CardDocument {
+// MARK: - CardTemplate
+struct CardTemplate {
     static var text = TextModel("段落", "这是一段文字。\n这是一段文字。", level: 0)
     static var sleep = SleepModel(8, level: 0)
 }

@@ -3,13 +3,17 @@ import SwiftUI
 // MARK: - SleepCard
 struct SleepCard: View {
     @Binding var model: SleepModel
+    var diaryColumn: Int
     var isEditing: Bool
     
     @Environment(\.colorScheme) private var colorScheme
     
-    init(_ model: Binding<SleepModel>, _ isEditing: Bool) {
+    @State private var buttonWidth: CGFloat = 0
+    
+    init(_ model: Binding<SleepModel>, _ isEditing: Bool, diaryColumn: Int) {
         self._model = model
         self.isEditing = isEditing
+        self.diaryColumn = diaryColumn
     }
     
     // MARK: - IconView
@@ -85,10 +89,25 @@ struct SleepCard: View {
     // MARK: - 组件
     var body: some View {
         VStack {
-            Text("睡眠时长")
-                .headlineFont(level: model.level)
-                .padding(.horizontal)
-                .padding(.horizontal)
+            if isEditing {
+                ViewThatFits {
+                    HStack {
+                        Color.clear
+                            .frame(width: buttonWidth, height: 0)
+                        Text("睡眠时长")
+                            .headlineFont(level: model.level)
+                        MoreButtonView($model, diaryColumn: diaryColumn)
+                            .readSize { size in
+                                buttonWidth = size.width
+                            }
+                    }
+                }
+            } else {
+                Text("睡眠时长")
+                    .headlineFont(level: model.level)
+                    .padding(.horizontal)
+                    .padding(.horizontal)
+            }
             if isEditing {
                 // MARK: -
 #if os(iOS)
@@ -168,7 +187,7 @@ struct SleepCard_Previews: PreviewProvider {
         }
         
         var body: some View {
-            SleepCard($model, false)
+            SleepCard($model, true, diaryColumn: 2)
         }
     }
     
