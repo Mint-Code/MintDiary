@@ -48,21 +48,29 @@ struct MoreButtonView<Model: CardModel>: View {
         .popover(isPresented: $isEditingMore) {
             Form {
                 Stepper("横跨\(model.column)列") {
-                    if model.column < diaryColumn {
-                        model.column += 1
+                    withAnimation(.easeInOut(duration: .animationTime)) {
+                        if model.column < diaryColumn {
+                            model.column += 1
+                        }
                     }
                 } onDecrement: {
-                    if model.column > 1 {
-                        model.column -= 1
+                    withAnimation(.easeInOut(duration: .animationTime)) {
+                        if model.column > 1 {
+                            model.column -= 1
+                        }
                     }
                 }
                 Stepper("\(colorName[model.level] ?? "")底色") {
-                    if model.level < 6 {
-                        model.level += 1
+                    withAnimation(.easeInOut(duration: .animationTime)) {
+                        if model.level < 6 {
+                            model.level += 1
+                        }
                     }
                 } onDecrement: {
-                    if model.level > 0 {
-                        model.level -= 1
+                    withAnimation(.easeInOut(duration: .animationTime)) {
+                        if model.level > 0 {
+                            model.level -= 1
+                        }
                     }
                 }
             }

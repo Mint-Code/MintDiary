@@ -6,6 +6,7 @@ struct MintDiaryApp: App {
     @StateObject var diaryData = DiaryData()
     
     var body: some Scene {
+        // MARK: - 主窗口
         WindowGroup {
             ContentView(diaryData)
                 .task {
@@ -15,7 +16,11 @@ struct MintDiaryApp: App {
                     diaryData.save()
                 }
         }
+        .commands {
+            DiaryCommand(diaryData)
+        }
 #if os(macOS)
+        // MARK: - 状态栏
         MenuBarExtra {
             NavigationStack {
                 MenuBarDiaryListView(diaryData)

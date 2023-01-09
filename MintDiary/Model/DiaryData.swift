@@ -9,7 +9,7 @@ class DiaryData: ObservableObject {
     }
         
     private static func getDataFileURL() throws -> URL {
-        FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
             .appendingPathComponent("MintDiary.data")
     }
     
@@ -20,7 +20,7 @@ class DiaryData: ObservableObject {
             diaryData = try JSONDecoder().decode([Diary].self, from: fileData)
             print("数据加载。")
         } catch {
-            print("加载失败。")
+            print("加载失败：\(error.localizedDescription)")
         }
     }
     
@@ -30,7 +30,7 @@ class DiaryData: ObservableObject {
             let fileData = try JSONEncoder().encode(diaryData)
             try fileData.write(to: fileURL, options: [.atomic, .completeFileProtection])
         } catch {
-            print("保存失败。")
+            print("保存失败：\(error.localizedDescription)")
         }
     }
     

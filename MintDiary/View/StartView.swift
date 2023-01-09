@@ -3,18 +3,21 @@ import SwiftUI
 // MARK: - StartView
 struct StartView: View {
     @ObservedObject var diaryData: DiaryData
+    @Binding var selection: Int?
 
 #if os(iOS)
     @Environment(\.dismiss) private var dismiss
 #endif
     
-    init(_ diaryData: DiaryData) {
+    init(_ diaryData: DiaryData, selection: Binding<Int?>) {
         self.diaryData = diaryData
+        self._selection = selection
     }
     
     // MARK: - TemplateView
     struct TemplateView: View {
         @ObservedObject var diaryData: DiaryData
+        @Binding var selection: Int?
         var name: String
         var diary: Diary
 #if os(iOS)
@@ -24,17 +27,19 @@ struct StartView: View {
         @Environment(\.colorScheme) private var colorScheme
         
 #if os(iOS)
-        init(_ name: String, _ diary: Diary, diaryData: DiaryData, dismiss: DismissAction) {
+        init(_ name: String, _ diary: Diary, diaryData: DiaryData, dismiss: DismissAction, selection: Binding<Int?>) {
             self.name = name
             self.diary = diary
             self.diaryData = diaryData
             self.dismiss = dismiss
+            self._selection = selection
         }
 #else
-        init(_ name: String, _ diary: Diary, diaryData: DiaryData) {
+        init(_ name: String, _ diary: Diary, diaryData: DiaryData, selection: Binding<Int?>) {
             self.name = name
             self.diary = diary
             self.diaryData = diaryData
+            self._selection = selection
         }
 #endif
         
@@ -43,6 +48,7 @@ struct StartView: View {
             VStack {
                 Button {
                     diaryData.diaryData.insert(diary, at: 0)
+                    selection = 0
 #if os(iOS)
                     dismiss()
 #endif
@@ -116,9 +122,9 @@ struct StartView: View {
                     TemplateView("文本日记", DiaryTemplate.text, diaryData: diaryData, dismiss: dismiss)
 #else
                     // MARK: -
-                    TemplateView("空白日记", DiaryTemplate.empty, diaryData: diaryData)
+                    TemplateView("空白日记", DiaryTemplate.empty, diaryData: diaryData, selection: $selection)
                     // MARK: -
-                    TemplateView("文本日记", DiaryTemplate.text, diaryData: diaryData)
+                    TemplateView("文本日记", DiaryTemplate.text, diaryData: diaryData, selection: $selection)
 #endif
                 }
                 .padding()
@@ -147,7 +153,7 @@ struct StartView: View {
 // MARK: - 预览
 struct StartView_Previews: PreviewProvider {
     static var previews: some View {
-        StartView(DiaryData())
+        StartView(DiaryData(), selection: .constant(-1))
             .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }

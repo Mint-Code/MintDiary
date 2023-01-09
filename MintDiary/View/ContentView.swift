@@ -12,11 +12,7 @@ struct ContentView: View {
     var body: some View {
         NavigationSplitView {
             DiaryListView(diaryData)
-        } detail: {
-#if os(macOS)
-            StartView(diaryData)
-#endif
-        }
+        } detail: {}
     }
 }
 

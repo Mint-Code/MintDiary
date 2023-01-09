@@ -24,6 +24,7 @@
 		A9840545294D438900002426 /* TextCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9840544294D438900002426 /* TextCard.swift */; };
 		A9840549294D4A9D00002426 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9840548294D4A9D00002426 /* Constant.swift */; };
 		A989F70D295738CD00BAA6E8 /* DiaryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A989F70C295738CD00BAA6E8 /* DiaryDetailView.swift */; };
+		A994F3EC2969AA3A00B832FB /* DiaryCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = A994F3EB2969AA3A00B832FB /* DiaryCommand.swift */; };
 		A9B866CD295BF0ED0004B237 /* CardStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B866CC295BF0ED0004B237 /* CardStyle.swift */; };
 		A9BB46132956CE5500A7E474 /* FileHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BB46122956CE5500A7E474 /* FileHelper.swift */; };
 		A9BB46152956CE8400A7E474 /* DiaryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BB46142956CE8400A7E474 /* DiaryData.swift */; };
@@ -53,6 +54,7 @@
 		A9840544294D438900002426 /* TextCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextCard.swift; sourceTree = "<group>"; };
 		A9840548294D4A9D00002426 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		A989F70C295738CD00BAA6E8 /* DiaryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryDetailView.swift; sourceTree = "<group>"; };
+		A994F3EB2969AA3A00B832FB /* DiaryCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryCommand.swift; sourceTree = "<group>"; };
 		A9B866CC295BF0ED0004B237 /* CardStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardStyle.swift; sourceTree = "<group>"; };
 		A9BB46122956CE5500A7E474 /* FileHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileHelper.swift; sourceTree = "<group>"; };
 		A9BB46142956CE8400A7E474 /* DiaryData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryData.swift; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 		A9840533294D3F4F00002426 /* MintDiary */ = {
 			isa = PBXGroup;
 			children = (
+				A994F3EA2969AA2C00B832FB /* Command */,
 				A9EABF9D295EC2CF0010F620 /* Style */,
 				A976F3B62956893C00309E92 /* Helper */,
 				A9CE12AA2951445000737FCC /* Model */,
@@ -162,6 +165,14 @@
 				A9D5B40A294E01FB007AD6BC /* SleepCard.swift */,
 			);
 			path = Card;
+			sourceTree = "<group>";
+		};
+		A994F3EA2969AA2C00B832FB /* Command */ = {
+			isa = PBXGroup;
+			children = (
+				A994F3EB2969AA3A00B832FB /* DiaryCommand.swift */,
+			);
+			path = Command;
 			sourceTree = "<group>";
 		};
 		A9CE12AA2951445000737FCC /* Model */ = {
@@ -269,6 +280,7 @@
 				A90357D5295AD1F6008554A8 /* CardView.swift in Sources */,
 				A9840545294D438900002426 /* TextCard.swift in Sources */,
 				A9EABF9F295EC2EA0010F620 /* TextStyle.swift in Sources */,
+				A994F3EC2969AA3A00B832FB /* DiaryCommand.swift in Sources */,
 				A9840549294D4A9D00002426 /* Constant.swift in Sources */,
 				A93194A52966996C00D6A9A0 /* MenuBarDiaryDetailView.swift in Sources */,
 				A9B866CD295BF0ED0004B237 /* CardStyle.swift in Sources */,
@@ -414,6 +426,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 0;
 				DEVELOPMENT_ASSET_PATHS = "\"MintDiary/Preview Content\"";
@@ -432,11 +446,12 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.0;
+				MARKETING_VERSION = 1.1.1;
 				"MARKETING_VERSION[sdk=iphoneos*]" = 1.0.2;
-				"MARKETING_VERSION[sdk=macosx*]" = 1.1.0;
+				"MARKETING_VERSION[sdk=macosx*]" = 1.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = MintCode.MintDiary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -451,6 +466,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 0;
 				DEVELOPMENT_ASSET_PATHS = "\"MintDiary/Preview Content\"";
@@ -471,9 +488,10 @@
 				);
 				MARKETING_VERSION = 1.1.0;
 				"MARKETING_VERSION[sdk=iphoneos*]" = 1.0.2;
-				"MARKETING_VERSION[sdk=macosx*]" = 1.1.0;
+				"MARKETING_VERSION[sdk=macosx*]" = 1.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = MintCode.MintDiary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
