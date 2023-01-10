@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A90357D5295AD1F6008554A8 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90357D4295AD1F6008554A8 /* CardView.swift */; };
+		A91AAC72296D94D300AC31A7 /* TemplatePreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91AAC71296D94D300AC31A7 /* TemplatePreviewView.swift */; };
 		A928845E2967ADBB00CBC5AC /* MoreButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A928845D2967ADBB00CBC5AC /* MoreButtonView.swift */; };
 		A9304AAF29651ADC00D14BAE /* ButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9304AAE29651ADC00D14BAE /* ButtonStyle.swift */; };
 		A93194A32966972000D6A9A0 /* MenuBarDiaryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93194A22966972000D6A9A0 /* MenuBarDiaryListView.swift */; };
@@ -37,6 +38,8 @@
 
 /* Begin PBXFileReference section */
 		A90357D4295AD1F6008554A8 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		A91AAC70296D8EA700AC31A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		A91AAC71296D94D300AC31A7 /* TemplatePreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplatePreviewView.swift; sourceTree = "<group>"; };
 		A928845D2967ADBB00CBC5AC /* MoreButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreButtonView.swift; sourceTree = "<group>"; };
 		A9304AAE29651ADC00D14BAE /* ButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyle.swift; sourceTree = "<group>"; };
 		A93194A22966972000D6A9A0 /* MenuBarDiaryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarDiaryListView.swift; sourceTree = "<group>"; };
@@ -90,6 +93,7 @@
 			children = (
 				A90357D4295AD1F6008554A8 /* CardView.swift */,
 				A928845D2967ADBB00CBC5AC /* MoreButtonView.swift */,
+				A91AAC71296D94D300AC31A7 /* TemplatePreviewView.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -130,6 +134,7 @@
 				A9840542294D436B00002426 /* View */,
 				A9840534294D3F4F00002426 /* MintDiaryApp.swift */,
 				A9840548294D4A9D00002426 /* Constant.swift */,
+				A91AAC70296D8EA700AC31A7 /* Info.plist */,
 				A9840538294D3F5000002426 /* Assets.xcassets */,
 				A984053A294D3F5000002426 /* Preview Content */,
 			);
@@ -283,6 +288,7 @@
 				A994F3EC2969AA3A00B832FB /* DiaryCommand.swift in Sources */,
 				A9840549294D4A9D00002426 /* Constant.swift in Sources */,
 				A93194A52966996C00D6A9A0 /* MenuBarDiaryDetailView.swift in Sources */,
+				A91AAC72296D94D300AC31A7 /* TemplatePreviewView.swift in Sources */,
 				A9B866CD295BF0ED0004B237 /* CardStyle.swift in Sources */,
 				A928845E2967ADBB00CBC5AC /* MoreButtonView.swift in Sources */,
 				A976F3B92956895F00309E92 /* ReadSizeHelper.swift in Sources */,
@@ -434,9 +440,9 @@
 				DEVELOPMENT_TEAM = 424Z47PA9V;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MintDiary/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "薄荷日记";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -447,7 +453,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.1.1;
-				"MARKETING_VERSION[sdk=iphoneos*]" = 1.0.2;
+				"MARKETING_VERSION[sdk=iphoneos*]" = 1.1.0;
 				"MARKETING_VERSION[sdk=macosx*]" = 1.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = MintCode.MintDiary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -474,9 +480,9 @@
 				DEVELOPMENT_TEAM = 424Z47PA9V;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MintDiary/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "薄荷日记";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -486,8 +492,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.0;
-				"MARKETING_VERSION[sdk=iphoneos*]" = 1.0.2;
+				MARKETING_VERSION = 1.1.1;
+				"MARKETING_VERSION[sdk=iphoneos*]" = 1.1.0;
 				"MARKETING_VERSION[sdk=macosx*]" = 1.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = MintCode.MintDiary;
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -22,7 +22,7 @@ extension View {
     
     func resumeFont(_ textAlignment: TextAlignment = .center, _ alignment: Alignment = .center, level: Int = 0) -> some View {
         self
-            .font(.body.weight(.light))
+            .font(.footnote)
             .frame(maxWidth: .infinity, alignment: alignment)
             .multilineTextAlignment(textAlignment)
             .foregroundColor(.secondaryColor(level))

@@ -6,7 +6,6 @@ struct DiaryListView: View {
     @ObservedObject var diaryData: DiaryData
     
     @State var isOnStartView: Bool = false
-    @State var selection: Int? = -1
     
     init(_ diaryData: DiaryData) {
         self.diaryData = diaryData
@@ -14,13 +13,14 @@ struct DiaryListView: View {
     
     // MARK: - 组件 - iOS
     var body: some View {
-        List(0..<diaryData.diaryData.count, id: \.self, selection: $selection) { index in
-            if let diary = $diaryData.diaryData[index] {
-                NavigationLink {
-                    DiaryDetailView(diaryData, diary, index)
-                        .navigationTitle(diary.name)
-                } label: {
-                    Label(diary.name.wrappedValue, systemImage: diary.icon.wrappedValue)
+        List {
+            ForEach(0..<diaryData.diaryData.count, id: \.self) { index in
+                if let diary = $diaryData.diaryData[index] {
+                    NavigationLink {
+                        DiaryDetailView(diaryData, diary, index: index)
+                    } label: {
+                        Label(diary.name.wrappedValue, systemImage: diary.icon.wrappedValue)
+                    }
                 }
             }
         }
