@@ -65,6 +65,18 @@ struct Diary: Identifiable, Equatable, Hashable, Codable {
         self.icon = icon
     }
     
+    init(
+        _ name: String = "新建空白日记",
+        icon: String = "book",
+        column: Int = 2,
+        @DiaryContentBuilder cardData: () -> [DiaryCardData]
+    ) {
+        self.cardData = cardData()
+        self.column = column
+        self.name = name
+        self.icon = icon
+    }
+    
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
     }
@@ -107,17 +119,30 @@ struct DiaryCardData: Identifiable, Equatable, Hashable, Codable {
 
 // MARK: - DiaryTemplate
 struct DiaryTemplate {
-    static var empty = Diary("新建空白日记", [], icon: "book", column: 2)
-    static var text = Diary(
-        "新建文本日记",
-        [DiaryCardData(.text(TextModel("段落", "这是一段文字。\n这是一段文字。", level: 0)))],
-        icon: "doc",
-        column: 1
-    )
+    static var empty = Diary("新建空白日记", icon: "book", column: 2) {}
+    static var text = Diary("新建文本日记", icon: "doc", column: 1) {
+        TextModel("段落", "这是一段文字。\n这是一段文字。", level: 0)
+    }
 }
 
 // MARK: - CardTemplate
 struct CardTemplate {
     static var text = TextModel("段落", "这是一段文字。\n这是一段文字。", level: 0)
     static var sleep = SleepModel(8, level: 0)
+}
+
+// MARK: - DiaryContentBuilder
+@resultBuilder
+enum DiaryContentBuilder {
+    static func buildBlock(_ components: any CardModel...) -> [DiaryCardData] {
+        var content: [DiaryCardData] = []
+        for model in components {
+            if let textModel = model as? TextModel {
+                content.append(DiaryCardData(.text(textModel)))
+            } else if let sleepModel = model as? SleepModel {
+                content.append(DiaryCardData(.sleep(sleepModel)))
+            }
+        }
+        return content
+    }
 }

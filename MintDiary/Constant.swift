@@ -38,6 +38,14 @@ extension Color {
         }
     }
     
+    static func tertiaryColor(_ level: Int) -> Color {
+        if level != 0 {
+            return Color("TertiaryColor\(level)")
+        } else {
+            return Color("TertiaryColor1")
+        }
+    }
+    
     static func opacityColor(_ level: Int) -> Color {
         if level != 0 {
             return Color("OpacityColor\(level)")

@@ -16,76 +16,6 @@ struct SleepCard: View {
         self.diaryColumn = diaryColumn
     }
     
-    // MARK: - IconView
-    struct IconView: View {
-        var level: Int
-        
-        init(level: Int) {
-            self.level = level
-        }
-        
-        var body: some View {
-            Image(systemName: "moon.zzz.fill")
-                .font(.title)
-                .foregroundColor(.textColor(level))
-        }
-    }
-    
-    // MARK: - TextView
-    struct TextView: View {
-        var sleep: Int
-        var level: Int
-        
-        init(_ sleep: Int, level: Int) {
-            self.sleep = sleep
-            self.level = level
-        }
-        
-        var body: some View {
-            Text("\(sleep)小时")
-                .font(.body)
-                .foregroundColor(.textColor(level))
-                .lineLimit(1)
-        }
-    }
-    
-    // MARK: - ProgressView
-    struct ProgressView: View {
-        var sleep: Int
-        var level: Int
-        
-        init(_ sleep: Int, level: Int) {
-            self.sleep = sleep
-            self.level = level
-        }
-        
-        var body: some View {
-            HStack(spacing: 0) {
-                ForEach(1...12, id: \.self) { index in
-                    if index > sleep {
-                        Rectangle()
-                            .fill(Color.opacityColor(level))
-                            .frame(height: .progressHeight)
-                    } else {
-                        ZStack(alignment: .top) {
-                            Rectangle()
-                                .fill(Color.opacityColor(level))
-                                .frame(height: .progressHeight)
-                            Rectangle()
-                                .fill(Color.opacityColor(level))
-                                .frame(height: .progressHeight)
-                            Rectangle()
-                                .fill(Color.secondaryColor(level))
-                                .frame(height: .progressHeight)
-                        }
-                    }
-                }
-            }
-            .cornerRadius(.cardCornerRadius)
-            .frame(minWidth: 100)
-        }
-    }
-    
     // MARK: - 组件
     var body: some View {
         VStack {
@@ -151,28 +81,95 @@ struct SleepCard: View {
                 ViewThatFits {
                     // MARK: -
                     HStack {
-                        IconView(level: model.level)
-                        TextView(model.sleep, level: model.level)
-                        ProgressView(model.sleep, level: model.level)
+                        SleepCardIconView(level: model.level)
+                        SleepCardTextView(model.sleep, level: model.level)
+                        SleepCardProgressView(model.sleep, level: model.level)
                     }
                     // MARK: -
                     HStack {
-                        IconView(level: model.level)
-                        ProgressView(model.sleep, level: model.level)
+                        SleepCardIconView(level: model.level)
+                        SleepCardProgressView(model.sleep, level: model.level)
                     }
                     // MARK: -
                     HStack {
-                        IconView(level: model.level)
-                        TextView(model.sleep, level: model.level)
+                        SleepCardIconView(level: model.level)
+                        SleepCardTextView(model.sleep, level: model.level)
                     }
                     // MARK: -
-                    TextView(model.sleep, level: model.level)
+                    SleepCardTextView(model.sleep, level: model.level)
                 }
                 .padding(.horizontal)
                 .padding(.horizontal)
             }
         }
         .cardStyle(model.level, model.column, colorScheme: colorScheme)
+    }
+}
+
+// MARK: - SleepCardIconView
+struct SleepCardIconView: View {
+    var level: Int
+    
+    init(level: Int) {
+        self.level = level
+    }
+    
+    var body: some View {
+        Image(systemName: "moon.zzz.fill")
+            .font(.title)
+            .foregroundColor(.textColor(level))
+    }
+}
+
+// MARK: - SleepCardTextView
+struct SleepCardTextView: View {
+    var sleep: Int
+    var level: Int
+    
+    init(_ sleep: Int, level: Int) {
+        self.sleep = sleep
+        self.level = level
+    }
+    
+    var body: some View {
+        Text("\(sleep)小时")
+            .font(.body)
+            .foregroundColor(.textColor(level))
+            .lineLimit(1)
+    }
+}
+
+// MARK: - SleepCardProgressView
+struct SleepCardProgressView: View {
+    var sleep: Int
+    var level: Int
+    
+    init(_ sleep: Int, level: Int) {
+        self.sleep = sleep
+        self.level = level
+    }
+    
+    var body: some View {
+        HStack(spacing: 0) {
+            ForEach(1...12, id: \.self) { index in
+                if index > sleep {
+                    Rectangle()
+                        .fill(Color.opacityColor(level))
+                        .frame(height: .progressHeight)
+                } else {
+                    ZStack(alignment: .top) {
+                        Rectangle()
+                            .fill(Color.tertiaryColor(level))
+                            .frame(height: .progressHeight)
+                        Rectangle()
+                            .fill(Color.secondaryColor(level))
+                            .frame(height: .progressHeight)
+                    }
+                }
+            }
+        }
+        .cornerRadius(.cardCornerRadius)
+        .frame(minWidth: 100)
     }
 }
 
@@ -187,7 +184,7 @@ struct SleepCard_Previews: PreviewProvider {
         }
         
         var body: some View {
-            SleepCard($model, true, diaryColumn: 2)
+            SleepCard($model, false, diaryColumn: 2)
         }
     }
     

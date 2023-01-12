@@ -24,80 +24,6 @@ struct DiaryDetailView: View {
         self.index = index
     }
     
-    // MARK: - AddCardView - iOS
-    struct AddCardView: View {
-        @Binding var diary: Diary
-        
-        @Environment(\.dismiss) private var dismiss
-        
-        init(_ diary: Binding<Diary>) {
-            self._diary = diary
-        }
-        
-        // MARK: - CardPreviewView - iOS
-        struct CardPreviewView<Card: View>: View {
-            @Binding var diary: Diary
-            var name: String
-            var card: Card
-            var data: DiaryCard
-            var dismiss: DismissAction
-            
-            init(_ diary: Binding<Diary>, _ name: String, _ data: DiaryCard, dismiss: DismissAction, @ViewBuilder card: () -> Card) {
-                self._diary = diary
-                self.name = name
-                self.card = card()
-                self.data = data
-                self.dismiss = dismiss
-            }
-            
-            var body: some View {
-                VStack {
-                    Button {
-                        withAnimation(.easeInOut(duration: .animationTime)) {
-                            diary.cardData.append(DiaryCardData(data))
-                        }
-                        dismiss()
-                    } label: {
-                        card
-                    }
-                    .buttonStyle(.plain)
-                    Text(name)
-                        .resumeFont()
-                }
-            }
-        }
-        
-        // MARK: -
-        var body: some View {
-            ZStack(alignment: .topLeading) {
-                // MARK: -
-                Button {
-                    dismiss()
-                } label: {
-                    Image(systemName: "xmark")
-                        .xmarkFont()
-                }
-                .buttonStyle(PlainButtonStyle())
-                .padding()
-                // MARK: -
-                ScrollView(.vertical) {
-                    LazyVGrid(columns: [GridItem(.adaptive(minimum: .cardTemplateGridWidth), spacing: .cardGridSpacing)], spacing: .cardGridSpacing) {
-                        CardPreviewView($diary, "文本段落", .text(CardTemplate.text), dismiss: dismiss) {
-                            TextCard(.constant(CardTemplate.text), false, diaryColumn: 1)
-                        }
-                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-                        CardPreviewView($diary, "睡眠时长", .sleep(CardTemplate.sleep), dismiss: dismiss) {
-                            SleepCard(.constant(CardTemplate.sleep), false, diaryColumn: 1)
-                        }
-                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-                    }
-                    .padding()
-                    .padding()
-                }
-            }
-        }
-    }
-    
     // MARK: - 组件 - iOS
     var body: some View {
         if delete {
@@ -223,12 +149,86 @@ struct DiaryDetailView: View {
             }
             .sheet(isPresented: $isAddingCard) {
                 if UIDevice.current.userInterfaceIdiom == .pad {
-                    AddCardView($diary)
+                    DiaryDetailAddCardView($diary)
                 } else {
-                    AddCardView($diary)
+                    DiaryDetailAddCardView($diary)
                         .presentationDetents([.fraction(0.4), .fraction(0.6), .fraction(0.8)])
                 }
             }
+        }
+    }
+}
+
+// MARK: - DiaryDetailAddCardView - iOS
+struct DiaryDetailAddCardView: View {
+    @Binding var diary: Diary
+    
+    @Environment(\.dismiss) private var dismiss
+    
+    init(_ diary: Binding<Diary>) {
+        self._diary = diary
+    }
+    
+    // MARK: -
+    var body: some View {
+        ZStack(alignment: .topLeading) {
+            // MARK: -
+            Button {
+                dismiss()
+            } label: {
+                Image(systemName: "xmark")
+                    .xmarkFont()
+            }
+            .buttonStyle(PlainButtonStyle())
+            .padding()
+            // MARK: -
+            ScrollView(.vertical) {
+                LazyVGrid(columns: [GridItem(.adaptive(minimum: .cardTemplateGridWidth), spacing: .cardGridSpacing)], spacing: .cardGridSpacing) {
+                    DiaryDetailCardPreviewView($diary, "文本段落", .text(CardTemplate.text), dismiss: dismiss) {
+                        TextCard(.constant(CardTemplate.text), false, diaryColumn: 1)
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+                    DiaryDetailCardPreviewView($diary, "睡眠时长", .sleep(CardTemplate.sleep), dismiss: dismiss) {
+                        SleepCard(.constant(CardTemplate.sleep), false, diaryColumn: 1)
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+                }
+                .padding()
+                .padding()
+            }
+        }
+    }
+}
+
+// MARK: - DiaryDetailCardPreviewView - iOS
+struct DiaryDetailCardPreviewView<Card: View>: View {
+    @Binding var diary: Diary
+    var name: String
+    var card: Card
+    var data: DiaryCard
+    var dismiss: DismissAction
+    
+    init(_ diary: Binding<Diary>, _ name: String, _ data: DiaryCard, dismiss: DismissAction, @ViewBuilder card: () -> Card) {
+        self._diary = diary
+        self.name = name
+        self.card = card()
+        self.data = data
+        self.dismiss = dismiss
+    }
+    
+    var body: some View {
+        VStack {
+            Button {
+                withAnimation(.easeInOut(duration: .animationTime)) {
+                    diary.cardData.append(DiaryCardData(data))
+                }
+                dismiss()
+            } label: {
+                card
+            }
+            .buttonStyle(.plain)
+            Text(name)
+                .resumeFont()
         }
     }
 }
@@ -266,80 +266,6 @@ struct DiaryDetailView: View {
         self.diaryData = diaryData
         self._diary = diary
         self._selection = selection
-    }
-    
-    // MARK: - AddCardView - macOS
-    struct AddCardView: View {
-        @Binding var diary: Diary
-        
-        @Environment(\.dismiss) private var dismiss
-        
-        init(_ diary: Binding<Diary>) {
-            self._diary = diary
-        }
-        
-        // MARK: - CardPreviewView - macOS
-        struct CardPreviewView<Card: View>: View {
-            @Binding var diary: Diary
-            var name: String
-            var card: Card
-            var data: DiaryCard
-            var dismiss: DismissAction
-            
-            init(_ diary: Binding<Diary>, _ name: String, _ data: DiaryCard, dismiss: DismissAction, @ViewBuilder card: () -> Card) {
-                self._diary = diary
-                self.name = name
-                self.card = card()
-                self.data = data
-                self.dismiss = dismiss
-            }
-            
-            var body: some View {
-                VStack {
-                    Button {
-                        withAnimation(.easeInOut(duration: .animationTime)) {
-                            diary.cardData.append(DiaryCardData(data))
-                        }
-                        dismiss()
-                    } label: {
-                        card
-                    }
-                    .buttonStyle(.plain)
-                    Text(name)
-                        .resumeFont()
-                }
-            }
-        }
-        
-        // MARK: -
-        var body: some View {
-            ZStack(alignment: .topLeading) {
-                // MARK: -
-                Button {
-                    dismiss()
-                } label: {
-                    Image(systemName: "xmark")
-                        .xmarkFont()
-                }
-                .buttonStyle(PlainButtonStyle())
-                .padding()
-                // MARK: -
-                ScrollView(.vertical) {
-                    LazyVGrid(columns: [GridItem(.adaptive(minimum: .cardTemplateGridWidth), spacing: .cardGridSpacing)], spacing: .cardGridSpacing) {
-                        CardPreviewView($diary, "文本段落", .text(CardTemplate.text), dismiss: dismiss) {
-                            TextCard(.constant(CardTemplate.text), false, diaryColumn: 1)
-                        }
-                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-                        CardPreviewView($diary, "睡眠时长", .sleep(CardTemplate.sleep), dismiss: dismiss) {
-                            SleepCard(.constant(CardTemplate.sleep), false, diaryColumn: 1)
-                        }
-                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-                    }
-                    .padding()
-                    .padding()
-                }
-            }
-        }
     }
     
     // MARK: - 组件 - macOS
@@ -444,8 +370,82 @@ struct DiaryDetailView: View {
             )
         }
         .sheet(isPresented: $isAddingCard) {
-            AddCardView($diary)
+            DiaryDetailAddCardView($diary)
                 .frame(minWidth: 600, maxWidth: 1200, minHeight: 400, maxHeight: 800)
+        }
+    }
+}
+
+// MARK: - AddCardView - macOS
+struct DiaryDetailAddCardView: View {
+    @Binding var diary: Diary
+    
+    @Environment(\.dismiss) private var dismiss
+    
+    init(_ diary: Binding<Diary>) {
+        self._diary = diary
+    }
+    
+    // MARK: -
+    var body: some View {
+        ZStack(alignment: .topLeading) {
+            // MARK: -
+            Button {
+                dismiss()
+            } label: {
+                Image(systemName: "xmark")
+                    .xmarkFont()
+            }
+            .buttonStyle(PlainButtonStyle())
+            .padding()
+            // MARK: -
+            ScrollView(.vertical) {
+                LazyVGrid(columns: [GridItem(.adaptive(minimum: .cardTemplateGridWidth), spacing: .cardGridSpacing)], spacing: .cardGridSpacing) {
+                    DiaryDetailCardPreviewView($diary, "文本段落", .text(CardTemplate.text), dismiss: dismiss) {
+                        TextCard(.constant(CardTemplate.text), false, diaryColumn: 1)
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+                    DiaryDetailCardPreviewView($diary, "睡眠时长", .sleep(CardTemplate.sleep), dismiss: dismiss) {
+                        SleepCard(.constant(CardTemplate.sleep), false, diaryColumn: 1)
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+                }
+                .padding()
+                .padding()
+            }
+        }
+    }
+}
+
+// MARK: - CardPreviewView - macOS
+struct DiaryDetailCardPreviewView<Card: View>: View {
+    @Binding var diary: Diary
+    var name: String
+    var card: Card
+    var data: DiaryCard
+    var dismiss: DismissAction
+    
+    init(_ diary: Binding<Diary>, _ name: String, _ data: DiaryCard, dismiss: DismissAction, @ViewBuilder card: () -> Card) {
+        self._diary = diary
+        self.name = name
+        self.card = card()
+        self.data = data
+        self.dismiss = dismiss
+    }
+    
+    var body: some View {
+        VStack {
+            Button {
+                withAnimation(.easeInOut(duration: .animationTime)) {
+                    diary.cardData.append(DiaryCardData(data))
+                }
+                dismiss()
+            } label: {
+                card
+            }
+            .buttonStyle(.plain)
+            Text(name)
+                .resumeFont()
         }
     }
 }

@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A90357D5295AD1F6008554A8 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90357D4295AD1F6008554A8 /* CardView.swift */; };
-		A91AAC72296D94D300AC31A7 /* TemplatePreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91AAC71296D94D300AC31A7 /* TemplatePreviewView.swift */; };
+		A91AAC72296D94D300AC31A7 /* DiaryPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91AAC71296D94D300AC31A7 /* DiaryPreviewView.swift */; };
 		A928845E2967ADBB00CBC5AC /* MoreButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A928845D2967ADBB00CBC5AC /* MoreButtonView.swift */; };
 		A9304AAF29651ADC00D14BAE /* ButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9304AAE29651ADC00D14BAE /* ButtonStyle.swift */; };
 		A93194A32966972000D6A9A0 /* MenuBarDiaryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93194A22966972000D6A9A0 /* MenuBarDiaryListView.swift */; };
@@ -39,7 +39,7 @@
 /* Begin PBXFileReference section */
 		A90357D4295AD1F6008554A8 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		A91AAC70296D8EA700AC31A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		A91AAC71296D94D300AC31A7 /* TemplatePreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplatePreviewView.swift; sourceTree = "<group>"; };
+		A91AAC71296D94D300AC31A7 /* DiaryPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryPreviewView.swift; sourceTree = "<group>"; };
 		A928845D2967ADBB00CBC5AC /* MoreButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreButtonView.swift; sourceTree = "<group>"; };
 		A9304AAE29651ADC00D14BAE /* ButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyle.swift; sourceTree = "<group>"; };
 		A93194A22966972000D6A9A0 /* MenuBarDiaryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarDiaryListView.swift; sourceTree = "<group>"; };
@@ -86,16 +86,6 @@
 				A93194A42966996C00D6A9A0 /* MenuBarDiaryDetailView.swift */,
 			);
 			path = MenuBar;
-			sourceTree = "<group>";
-		};
-		A9514F83296025FC00FECEB3 /* Helper */ = {
-			isa = PBXGroup;
-			children = (
-				A90357D4295AD1F6008554A8 /* CardView.swift */,
-				A928845D2967ADBB00CBC5AC /* MoreButtonView.swift */,
-				A91AAC71296D94D300AC31A7 /* TemplatePreviewView.swift */,
-			);
-			path = Helper;
 			sourceTree = "<group>";
 		};
 		A976F3B62956893C00309E92 /* Helper */ = {
@@ -158,6 +148,7 @@
 				A95702BB2957303700519766 /* DiaryListView.swift */,
 				A989F70C295738CD00BAA6E8 /* DiaryDetailView.swift */,
 				A9E311A8295BD20600D59C49 /* StartView.swift */,
+				A91AAC71296D94D300AC31A7 /* DiaryPreviewView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -165,9 +156,10 @@
 		A9840543294D437800002426 /* Card */ = {
 			isa = PBXGroup;
 			children = (
-				A9514F83296025FC00FECEB3 /* Helper */,
+				A90357D4295AD1F6008554A8 /* CardView.swift */,
 				A9840544294D438900002426 /* TextCard.swift */,
 				A9D5B40A294E01FB007AD6BC /* SleepCard.swift */,
+				A928845D2967ADBB00CBC5AC /* MoreButtonView.swift */,
 			);
 			path = Card;
 			sourceTree = "<group>";
@@ -288,7 +280,7 @@
 				A994F3EC2969AA3A00B832FB /* DiaryCommand.swift in Sources */,
 				A9840549294D4A9D00002426 /* Constant.swift in Sources */,
 				A93194A52966996C00D6A9A0 /* MenuBarDiaryDetailView.swift in Sources */,
-				A91AAC72296D94D300AC31A7 /* TemplatePreviewView.swift in Sources */,
+				A91AAC72296D94D300AC31A7 /* DiaryPreviewView.swift in Sources */,
 				A9B866CD295BF0ED0004B237 /* CardStyle.swift in Sources */,
 				A928845E2967ADBB00CBC5AC /* MoreButtonView.swift in Sources */,
 				A976F3B92956895F00309E92 /* ReadSizeHelper.swift in Sources */,
@@ -452,9 +444,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.1;
+				MARKETING_VERSION = 1.1.2;
 				"MARKETING_VERSION[sdk=iphoneos*]" = 1.1.0;
-				"MARKETING_VERSION[sdk=macosx*]" = 1.1.1;
+				"MARKETING_VERSION[sdk=macosx*]" = 1.1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = MintCode.MintDiary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -492,9 +484,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.1;
+				MARKETING_VERSION = 1.1.2;
 				"MARKETING_VERSION[sdk=iphoneos*]" = 1.1.0;
-				"MARKETING_VERSION[sdk=macosx*]" = 1.1.1;
+				"MARKETING_VERSION[sdk=macosx*]" = 1.1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = MintCode.MintDiary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

@@ -68,7 +68,7 @@ struct TextCard: View {
                     // MARK: -
                     HStack {
                         Rectangle()
-                            .fill(Color.opacityColor(model.level))
+                            .fill(Color.tertiaryColor(model.level))
                             .frame(width: .textRectangleWidth, height: textHeight)
                             .cornerRadius(.textRectangleCornerRadius)
                         Text(model.text)
@@ -110,7 +110,7 @@ struct TextCard_Previews: PreviewProvider {
         }
         
         var body: some View {
-            TextCard($model, true, diaryColumn: 2)
+            TextCard($model, false, diaryColumn: 2)
         }
     }
     
