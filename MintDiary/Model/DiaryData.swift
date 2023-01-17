@@ -86,11 +86,13 @@ struct Diary: Identifiable, Equatable, Hashable, Codable {
 enum DiaryCard: Equatable, CaseIterable, Codable {
     case text(TextModel)
     case sleep(SleepModel)
+    case title(TitleModel)
     
     static var allCases: [DiaryCard] {
         [
             .text(CardTemplate.text),
-            .sleep(CardTemplate.sleep)
+            .sleep(CardTemplate.sleep),
+            .title(CardTemplate.title)
         ]
     }
 }
@@ -104,6 +106,8 @@ struct DiaryCardData: Identifiable, Equatable, Hashable, Codable {
         case .text(let model):
             return model.column
         case .sleep(let model):
+            return model.column
+        case .title(let model):
             return model.column
         }
     }
@@ -120,8 +124,18 @@ struct DiaryCardData: Identifiable, Equatable, Hashable, Codable {
 // MARK: - DiaryTemplate
 struct DiaryTemplate {
     static var empty = Diary("新建空白日记", icon: "book", column: 2) {}
+    
     static var text = Diary("新建文本日记", icon: "doc", column: 1) {
         TextModel("段落", "这是一段文字。\n这是一段文字。", level: 0)
+    }
+    
+    static var simpleDiary = Diary("新建日记", icon: "book.closed", column: 3) {
+        TitleModel("日记标题", .newYork, .bold, level: 6, column: 3)
+        TextModel("今日小记", "今天发生了什么？\n在这里记录今天发生的事情……", level: 1, column: 2)
+        TextModel("今日心情", "今天的心情怎么样？\n在这里记录你的心情……", level: 4)
+        SleepModel(8, level: 3)
+        TextModel("今日小记", "今天发生了什么？\n在这里记录今天发生的事情……", level: 5, column: 2)
+        TextModel("今日小记", "今天发生了什么？\n在这里记录今天发生的事情……", level: 2, column: 3)
     }
 }
 
@@ -129,6 +143,7 @@ struct DiaryTemplate {
 struct CardTemplate {
     static var text = TextModel("段落", "这是一段文字。\n这是一段文字。", level: 0)
     static var sleep = SleepModel(8, level: 0)
+    static var title = TitleModel("标题文字", level: 0)
 }
 
 // MARK: - DiaryContentBuilder
@@ -141,6 +156,8 @@ enum DiaryContentBuilder {
                 content.append(DiaryCardData(.text(textModel)))
             } else if let sleepModel = model as? SleepModel {
                 content.append(DiaryCardData(.sleep(sleepModel)))
+            } else if let titleModel = model as? TitleModel {
+                content.append(DiaryCardData(.title(titleModel)))
             }
         }
         return content

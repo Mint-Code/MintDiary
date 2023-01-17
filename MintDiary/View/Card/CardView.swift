@@ -33,6 +33,15 @@ struct CardView: View {
                     diaryCardData.card = .sleep(newValue)
                 }, isEditing, diaryColumn: diaryColumn
             )
+        case .title(let model):
+            // MARK: -
+            TitleCard(
+                Binding {
+                    model
+                } set: { newValue in
+                    diaryCardData.card = .title(newValue)
+                }, isEditing, diaryColumn: diaryColumn
+            )
         }
     }
 }

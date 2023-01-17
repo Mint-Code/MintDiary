@@ -72,9 +72,9 @@ extension CGFloat {
     static let lineSpacing: CGFloat = 4
     
     static let cardCornerRadius: CGFloat = 20
-    static let cardShadowRadius: CGFloat = 4
+    static let cardShadowRadius: CGFloat = 2
     static let cardShadowX: CGFloat = 0
-    static let cardShadowY: CGFloat = 3
+    static let cardShadowY: CGFloat = 1.5
     
     static let cardGridSpacing: CGFloat = 15
     
@@ -94,9 +94,9 @@ extension CGFloat {
     static let scrollPaneWidth: CGFloat = 6
     
     static let diaryTemplateCornerRadius: CGFloat = 20
-    static let diaryTemplateShadowRadius: CGFloat = 4
+    static let diaryTemplateShadowRadius: CGFloat = 2
     static let diaryTemplateShadowX: CGFloat = 0
-    static let diaryTemplateShadowY: CGFloat = 3
+    static let diaryTemplateShadowY: CGFloat = 1.5
     static let diaryTemplateWidth: CGFloat = 140
     static let diaryTemplateHeight: CGFloat = 170
     static let diaryTemplateGridWidth: CGFloat = 150
