@@ -14,12 +14,12 @@ struct StartView: View {
     // MARK: - 组件 - iOS
     var body: some View {
         List {
+            // MARK: -
             Section("基本") {
                 LazyVGrid(columns: [GridItem(.adaptive(minimum: .diaryTemplateGridWidth))]) {
-                    // MARK: -
                     StartTemplateView("空白日记", DiaryTemplate.empty, diaryData: diaryData, dismiss: dismiss)
-                    // MARK: -
                     StartTemplateView("文本日记", DiaryTemplate.text, diaryData: diaryData, dismiss: dismiss)
+                    StartTemplateView("基本日记", DiaryTemplate.simpleDiary, diaryData: diaryData, dismiss: dismiss)
                 }
                 .padding()
             }
@@ -63,7 +63,7 @@ struct StartTemplateView: View {
                 diaryData.diaryData.insert(diary, at: 0)
                 dismiss()
             } label: {
-                TemplatePreviewView(diary)
+                DiaryPreviewView(diary)
             }
             .buttonStyle(PlainButtonStyle())
             Text(name)
@@ -85,12 +85,12 @@ struct StartView: View {
     // MARK: - 组件 - macOS
     var body: some View {
         List {
+            // MARK: -
             Section("基本") {
                 LazyVGrid(columns: [GridItem(.adaptive(minimum: .diaryTemplateGridWidth))]) {
-                    // MARK: -
                     StartTemplateView("空白日记", DiaryTemplate.empty, diaryData: diaryData, selection: $selection)
-                    // MARK: -
                     StartTemplateView("文本日记", DiaryTemplate.text, diaryData: diaryData, selection: $selection)
+                    StartTemplateView("基本日记", DiaryTemplate.simpleDiary, diaryData: diaryData, selection: $selection)
                 }
                 .padding()
             }

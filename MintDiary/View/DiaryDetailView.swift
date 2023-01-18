@@ -188,6 +188,10 @@ struct DiaryDetailAddCardView: View {
                         TextCard(.constant(CardTemplate.text), false, diaryColumn: 1)
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+                    DiaryDetailCardPreviewView($diary, "标题文字", .title(CardTemplate.title), dismiss: dismiss) {
+                        TitleCard(.constant(CardTemplate.title), false, diaryColumn: 1)
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
                     DiaryDetailCardPreviewView($diary, "睡眠时长", .sleep(CardTemplate.sleep), dismiss: dismiss) {
                         SleepCard(.constant(CardTemplate.sleep), false, diaryColumn: 1)
                     }
@@ -306,7 +310,6 @@ struct DiaryDetailView: View {
                     Label(isRenaming ? "完成" : "重命名", systemImage: isRenaming ? "checkmark" : "pencil.line")
                 }
                 .popover(isPresented: $isRenaming) {
-                    
                     TextField("请输入……", text: $diary.name)
                         .multilineTextAlignment(.leading)
                         .padding(.horizontal)
@@ -376,7 +379,7 @@ struct DiaryDetailView: View {
     }
 }
 
-// MARK: - AddCardView - macOS
+// MARK: - DiaryDetailAddCardView - macOS
 struct DiaryDetailAddCardView: View {
     @Binding var diary: Diary
     
@@ -405,6 +408,10 @@ struct DiaryDetailAddCardView: View {
                         TextCard(.constant(CardTemplate.text), false, diaryColumn: 1)
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+                    DiaryDetailCardPreviewView($diary, "标题文字", .title(CardTemplate.title), dismiss: dismiss) {
+                        TitleCard(.constant(CardTemplate.title), false, diaryColumn: 1)
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
                     DiaryDetailCardPreviewView($diary, "睡眠时长", .sleep(CardTemplate.sleep), dismiss: dismiss) {
                         SleepCard(.constant(CardTemplate.sleep), false, diaryColumn: 1)
                     }
@@ -417,7 +424,7 @@ struct DiaryDetailAddCardView: View {
     }
 }
 
-// MARK: - CardPreviewView - macOS
+// MARK: - DiaryDetailCardPreviewView - macOS
 struct DiaryDetailCardPreviewView<Card: View>: View {
     @Binding var diary: Diary
     var name: String

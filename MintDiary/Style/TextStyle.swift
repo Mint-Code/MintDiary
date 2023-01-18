@@ -22,10 +22,19 @@ extension View {
     
     func resumeFont(_ textAlignment: TextAlignment = .center, _ alignment: Alignment = .center, level: Int = 0) -> some View {
         self
-            .font(.footnote)
+            .font(.callout)
             .frame(maxWidth: .infinity, alignment: alignment)
             .multilineTextAlignment(textAlignment)
-            .foregroundColor(.secondaryColor(level))
+            .foregroundColor(.tertiaryColor(level))
+    }
+    
+    func titleFont(_ font: Font, level: Int = 0) -> some View {
+        return self
+            .font(font)
+            .frame(maxWidth: .infinity, alignment: .center)
+            .multilineTextAlignment(.center)
+            .lineLimit(1)
+            .foregroundColor(.textColor(level))
     }
     
     func xmarkFont() -> some View {

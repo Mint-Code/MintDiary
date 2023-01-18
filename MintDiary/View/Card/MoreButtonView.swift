@@ -37,7 +37,8 @@ struct MoreButtonView<Model: CardModel>: View {
         self.diaryColumn = diaryColumn
     }
     
-    private var button: some View {
+    // MARK: - 按钮
+    @ViewBuilder private var button: some View {
         Button {
             isEditingMore.toggle()
         } label: {
@@ -47,7 +48,8 @@ struct MoreButtonView<Model: CardModel>: View {
         .padding(.trailing)
     }
     
-    private var form: some View {
+    // MARK: - 表单
+    @ViewBuilder private var form: some View {
         Form {
             Stepper("横跨\(model.column)列") {
                 withAnimation(.easeInOut(duration: .animationTime)) {
@@ -84,7 +86,6 @@ struct MoreButtonView<Model: CardModel>: View {
             button
                 .popover(isPresented: $isEditingMore) {
                     form
-                        .frame(width: 400, height: 200)
                 }
         } else {
             button
@@ -98,7 +99,6 @@ struct MoreButtonView<Model: CardModel>: View {
             .popover(isPresented: $isEditingMore) {
                 form
                     .formStyle(.grouped)
-                    .frame(width: 400, height: 200)
             }
 #endif
     }
