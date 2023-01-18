@@ -34,6 +34,8 @@
 		A9D5B40B294E01FB007AD6BC /* SleepCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D5B40A294E01FB007AD6BC /* SleepCard.swift */; };
 		A9E311A9295BD20600D59C49 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E311A8295BD20600D59C49 /* StartView.swift */; };
 		A9EABF9F295EC2EA0010F620 /* TextStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EABF9E295EC2EA0010F620 /* TextStyle.swift */; };
+		A9EEBEC429712B160096D0C2 /* TitleCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EEBEC329712B160096D0C2 /* TitleCard.swift */; };
+		A9EEBEC629712B850096D0C2 /* TitleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EEBEC529712B850096D0C2 /* TitleModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +68,8 @@
 		A9D5B40A294E01FB007AD6BC /* SleepCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepCard.swift; sourceTree = "<group>"; };
 		A9E311A8295BD20600D59C49 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
 		A9EABF9E295EC2EA0010F620 /* TextStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextStyle.swift; sourceTree = "<group>"; };
+		A9EEBEC329712B160096D0C2 /* TitleCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleCard.swift; sourceTree = "<group>"; };
+		A9EEBEC529712B850096D0C2 /* TitleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,9 +161,10 @@
 			isa = PBXGroup;
 			children = (
 				A90357D4295AD1F6008554A8 /* CardView.swift */,
+				A928845D2967ADBB00CBC5AC /* MoreButtonView.swift */,
 				A9840544294D438900002426 /* TextCard.swift */,
 				A9D5B40A294E01FB007AD6BC /* SleepCard.swift */,
-				A928845D2967ADBB00CBC5AC /* MoreButtonView.swift */,
+				A9EEBEC329712B160096D0C2 /* TitleCard.swift */,
 			);
 			path = Card;
 			sourceTree = "<group>";
@@ -187,6 +192,7 @@
 				A9CE12AC2951446C00737FCC /* TextModel.swift */,
 				A976F3BA2956931900309E92 /* SleepModel.swift */,
 				A9BB46162956D3D100A7E474 /* CardModel.swift */,
+				A9EEBEC529712B850096D0C2 /* TitleModel.swift */,
 			);
 			path = Card;
 			sourceTree = "<group>";
@@ -290,10 +296,12 @@
 				A93194A32966972000D6A9A0 /* MenuBarDiaryListView.swift in Sources */,
 				A976F3BB2956931900309E92 /* SleepModel.swift in Sources */,
 				A964A6992961B4BA00AAEE08 /* CreateDisplayDataHelper.swift in Sources */,
+				A9EEBEC429712B160096D0C2 /* TitleCard.swift in Sources */,
 				A9304AAF29651ADC00D14BAE /* ButtonStyle.swift in Sources */,
 				A989F70D295738CD00BAA6E8 /* DiaryDetailView.swift in Sources */,
 				A9BB46152956CE8400A7E474 /* DiaryData.swift in Sources */,
 				A9D5B40B294E01FB007AD6BC /* SleepCard.swift in Sources */,
+				A9EEBEC629712B850096D0C2 /* TitleModel.swift in Sources */,
 				A95474792963D68300EEBA6A /* TextFieldStyle.swift in Sources */,
 				A95702BC2957303700519766 /* DiaryListView.swift in Sources */,
 				A9840535294D3F4F00002426 /* MintDiaryApp.swift in Sources */,
@@ -444,9 +452,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.2;
-				"MARKETING_VERSION[sdk=iphoneos*]" = 1.1.0;
-				"MARKETING_VERSION[sdk=macosx*]" = 1.1.2;
+				MARKETING_VERSION = 1.1.3;
+				"MARKETING_VERSION[sdk=iphoneos*]" = 1.1.1;
+				"MARKETING_VERSION[sdk=macosx*]" = 1.1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = MintCode.MintDiary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -484,9 +492,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.2;
-				"MARKETING_VERSION[sdk=iphoneos*]" = 1.1.0;
-				"MARKETING_VERSION[sdk=macosx*]" = 1.1.2;
+				MARKETING_VERSION = 1.1.3;
+				"MARKETING_VERSION[sdk=iphoneos*]" = 1.1.1;
+				"MARKETING_VERSION[sdk=macosx*]" = 1.1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = MintCode.MintDiary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
