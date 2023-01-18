@@ -63,7 +63,7 @@ struct StartTemplateView: View {
                 diaryData.diaryData.insert(diary, at: 0)
                 dismiss()
             } label: {
-                TemplatePreviewView(diary)
+                DiaryPreviewView(diary)
             }
             .buttonStyle(PlainButtonStyle())
             Text(name)
